@@ -8,3 +8,22 @@
 /*********************************************
  *
  *********************************************/
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	padding: 0px;
+	margin: 0px;
+}
+
+.centered {
+	max-width: 700px;
+	padding-top: 100px;
+	margin: auto;
+
+	img {
+		width: 100%;
+	}
+}

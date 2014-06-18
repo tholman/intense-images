@@ -1,0 +1,22 @@
+/*
+ * intense-image-viewer
+ *
+ * MIT licensed
+ * Copyright (C) 2013 Tim Holman, http://tholman.com
+ */
+/*********************************************
+ *
+ *********************************************/
+* {
+  box-sizing: border-box; }
+
+html, body {
+  padding: 0px;
+  margin: 0px; }
+
+.centered {
+  max-width: 700px;
+  padding-top: 100px;
+  margin: auto; }
+  .centered img {
+    width: 100%; }

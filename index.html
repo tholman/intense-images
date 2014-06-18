@@ -10,5 +10,18 @@
         <script src='js/intense-image-viewer.js'></script>
     </head>
     <body>
+    	<div class="container"></div>
+		<div class="centered">
+			<img src="/img/panorama.jpg" />
+		</div>
+		<script>
+			var image = document.querySelector( 'img' );
+			var container = document.querySelector( '.container' );
+
+			image.onclick = function() {
+				imageViewer( image, container )
+			}
+
+		</script>
     </body>
 </html>
