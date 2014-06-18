@@ -38,7 +38,10 @@ var imageViewer = (function() {
   
     var overflowArea = { x: 0, y: 0 };
 
-    
+    /* -------------------------
+    /*          UTILS
+    /* -------------------------*/
+
     // Soft object augmentation
     function extend( target, source ) {
 
@@ -50,6 +53,17 @@ var imageViewer = (function() {
 
         return target;
     }
+
+    function applyProperties( target, properties ) {
+
+      for( var key in properties ) {
+        target.style[ key ] = properties[ key ];
+      }
+    }
+
+    /* -------------------------
+    /*          APP
+    /* -------------------------*/
   
     function start() { 
       setDimensions();
@@ -67,7 +81,29 @@ var imageViewer = (function() {
 
     function createViewer() {
 
+      var containerProperties = {
+        'backgroundColor': 'rgba(0,0,0,0.8)',
+        'width': '100%',
+        'height': '100%',
+        'position': 'fixed',
+        'top': '0px',
+        'left': '0px',
+        'overflow': 'hidden'
+      }
 
+      applyProperties( container, containerProperties );
+
+      // Apply properties to container
+
+      
+      var imageProperties = {
+
+      }
+
+      setDimensions();
+    }
+
+    function setDimensions() {
       targetDimensions = { w: target.width, h: target.height };
       containerDimensions = { w: container.innerWidth, h: container.innerHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
@@ -113,7 +149,7 @@ var imageViewer = (function() {
         }
       
         // Do it
-        var scrollSystem = mouseScroll( target, container );
+        var scrollSystem = startTracking( target, container );
 
         return scrollSystem;
     }
