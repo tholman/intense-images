@@ -157,12 +157,11 @@ var imageViewer = (function() {
         console.log( position, currentPosition );
         
         // Set final position to move to.
-        // tweenTo( position, trackingPosition );
-        target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+        tweenTo( position, trackingPosition );
         lastPosition = currentPosition;
       }
 
-      // keepMoving();
+      keepMoving();
     }
 
     function keepMoving() {
