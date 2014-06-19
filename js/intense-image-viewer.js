@@ -43,10 +43,14 @@ var imageViewer = (function() {
 
 
     // Tweening.
-    var tweenTime = 1000; //ms
+    var tweenTime = 600; //ms
     var currentTime, startTime;
 
-    var tweenPosition, startPosition, endPosition;
+    var startPosition, endPosition, containerPosition = 1;
+
+    var trackingPosition = 1;
+
+    var firstTween = false;
 
     /* -------------------------
     /*          UTILS
@@ -133,7 +137,7 @@ var imageViewer = (function() {
       container.addEventListener( 'resize', setDimensions, false );
 
       createViewer();
-      loop();
+      setTimeout( loop, 0 );
       
       return this;
     }
@@ -147,21 +151,42 @@ var imageViewer = (function() {
       currentPosition += (mouse.x - currentPosition);
 
       if( currentPosition !== lastPosition ) {
-        lastPosition = currentPosition;
         var position = parseFloat(currentPosition / containerDimensions.w );
         position = Math.ceil(overflowArea.x * position);
-        moveTo( position );        
+
+        console.log( position, currentPosition );
+        
+        // Set final position to move to.
+        // tweenTo( position, trackingPosition );
+        target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+        lastPosition = currentPosition;
       }
 
-      keepMoving();
+      // keepMoving();
     }
 
     function keepMoving() {
 
+      currentTime = new Date();
+      var timeDifference = currentTime - startTime;
+      if( timeDifference < tweenTime & firstTween === true ) {
+
+        var percentage = timeDifference / tweenTime;
+        var currentTweenPosition = startPosition - (( startPosition - endPosition ) * percentage );
+
+        target.style[ 'webkitTransform' ] = 'translate3d(' + currentTweenPosition + 'px, 0px, 0px)';
+        trackingPosition = currentTweenPosition;
+
+      }
     }
 
-    function moveTo( position ) {
-      target.style[ 'webkitTransform' ] = 'translateX(' + position + 'px)';
+    // Sets tween presets
+    function tweenTo( position, currentPosition ) {
+      
+      firstTween = true;
+      startTime = new Date();
+      startPosition = currentPosition;
+      endPosition = position;      
     }
 
     function main( src, container ) {
@@ -182,7 +207,8 @@ var imageViewer = (function() {
     return extend( main, {
         start: start,
         stop: stop,
-        resize: setDimensions
+        resize: setDimensions,
+        tweenTo: tweenTo
     });
 
 })();
