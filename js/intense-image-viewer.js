@@ -23,13 +23,16 @@ var imageViewer = (function() {
     'use strict';
     // TODO: Extend module to allow horizontal and vertical 
     var mouse = { x:0, y:0 };
+    var mouseEvent;
 
     // Variable to handle mouse position  
     var looper;
   
     // Current position of scrolly element
-    var currentPosition = 0;
+    var lastPosition, currentPosition = 0;
     
+    var source;
+
     var target;
     var targetDimensions = { w: 0, h: 0 };
   
@@ -37,6 +40,13 @@ var imageViewer = (function() {
     var containerDimensions = { w: 0, h:0 };
   
     var overflowArea = { x: 0, y: 0 };
+
+
+    // Tweening.
+    var tweenTime = 1000; //ms
+    var currentTime, startTime;
+
+    var tweenPosition, startPosition, endPosition;
 
     /* -------------------------
     /*          UTILS
@@ -66,7 +76,6 @@ var imageViewer = (function() {
     /* -------------------------*/
   
     function start() { 
-      setDimensions();
       loop();
     }
  
@@ -93,32 +102,38 @@ var imageViewer = (function() {
 
       applyProperties( container, containerProperties );
 
-      // Apply properties to container
-
-      
       var imageProperties = {
-
+        'height': '100%',
+        'pointerEvents': 'none'
       }
 
-      setDimensions();
+      applyProperties( target, imageProperties );
+
+      setTimeout( setDimensions, 0 );
+      // setDimensions();
     }
 
     function setDimensions() {
       targetDimensions = { w: target.width, h: target.height };
-      containerDimensions = { w: container.innerWidth, h: container.innerHeight };
+      containerDimensions = { w: container.offsetWidth, h: container.offsetHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
     }
 
-    function startTracking( targetElement, containerElement ) {
+    function startTracking( imageSource, containerElement ) {
       
-       target = targetElement;
-       container = containerElement;
-       
-       // Bind mouse move
-       // bindMouseMove();
+      var img = new Image();
+      img.src = imageSource;
 
-       createViewer();
-       loop();
+      target = img;
+      container = containerElement;
+      container.appendChild( target );
+       
+      // Bind mouse move
+      container.addEventListener( 'mousemove', onMouseMove, false );
+      container.addEventListener( 'resize', setDimensions, false );
+
+      createViewer();
+      loop();
       
       return this;
     }
@@ -129,27 +144,37 @@ var imageViewer = (function() {
     }
   
     function positionTarget() {
-      currentPosition += (mouse.y - currentPosition);
-      var position = parseFloat(currentPosition / containerDimensions.h );
-      position = Math.ceil(overflowArea.y * position) + "px";
-      // TweenLite.to( target, 0.9, {
-      //     y: position,
-      //     ease: false,
-      //     force3D: true
-      // })
+      currentPosition += (mouse.x - currentPosition);
+
+      if( currentPosition !== lastPosition ) {
+        lastPosition = currentPosition;
+        var position = parseFloat(currentPosition / containerDimensions.w );
+        position = Math.ceil(overflowArea.x * position);
+        moveTo( position );        
+      }
+
+      keepMoving();
     }
 
-    function main( target, container ) {
+    function keepMoving() {
+
+    }
+
+    function moveTo( position ) {
+      target.style[ 'webkitTransform' ] = 'translateX(' + position + 'px)';
+    }
+
+    function main( src, container ) {
 
         // Parse arguments
 
-        if ( !target || !container ) {
+        if ( !src || !container ) {
 
             throw 'You must supply a target and a container';
         }
       
         // Do it
-        var scrollSystem = startTracking( target, container );
+        var scrollSystem = startTracking( src, container );
 
         return scrollSystem;
     }
