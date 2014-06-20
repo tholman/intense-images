@@ -31,7 +31,7 @@ var imageViewer = (function() {
     // Current position of scrolly element
     var lastPosition, currentPosition = 0;
     
-    var source;
+    var source, sourceDimensions;
 
     var target;
     var targetDimensions = { w: 0, h: 0 };
@@ -68,11 +68,25 @@ var imageViewer = (function() {
         return target;
     }
 
+    // Applys a dict of css properties to an element
     function applyProperties( target, properties ) {
 
       for( var key in properties ) {
         target.style[ key ] = properties[ key ];
       }
+    }
+
+    // Returns whether target a vertical or horizontal fit in container
+    function getFit( source, container ) {
+
+      var width = source.w;
+      var height = source.h;
+
+      var ratio = container.offsetHeight / source.h;
+
+      console.log( { w: width * ratio, h: height * ratio} );
+      return { w: width * ratio, h: height * ratio};
+
     }
 
     /* -------------------------
@@ -82,14 +96,14 @@ var imageViewer = (function() {
     function start() { 
       loop();
     }
- 
+   
+    function stop() {
+      cancelRequestAnimFrame( looper );
+    }
+
     function loop() {
         looper = requestAnimFrame(loop);
         positionTarget();      
-    }
-  
-    function stop() {
-      cancelRequestAnimFrame( looper );
     }
 
     function createViewer() {
@@ -101,45 +115,67 @@ var imageViewer = (function() {
         'position': 'fixed',
         'top': '0px',
         'left': '0px',
-        'overflow': 'hidden'
+        'overflow': 'hidden',
+        'zIndex': '999999'
       }
 
       applyProperties( container, containerProperties );
 
       var imageProperties = {
-        'height': '100%',
-        'pointerEvents': 'none',
-        'webkitTransition': '-webkit-transform 800ms cubic-bezier( 0, .01, .26, 1 )'
+        'webkitTransition': '-webkit-transform 800ms cubic-bezier( 0, 0, .26, 1 )',
+        'pointerEvents': 'none'
       }
 
       applyProperties( target, imageProperties );
-
       setTimeout( setDimensions, 0 );
     }
 
+    function removeViewer() {
+
+      unbindEvents();
+      document.body.removeChild( container );
+    }
+
     function setDimensions() {
+
+      var imageDimensions = getFit(sourceDimensions, container);
+      target.width = imageDimensions.w;
+      target.height = imageDimensions.h;
+
       targetDimensions = { w: target.width, h: target.height };
       containerDimensions = { w: container.offsetWidth, h: container.offsetHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
     }
 
-    function startTracking( imageSource, containerElement ) {
+    function startTracking( imageSource ) {
       
       var img = new Image();
       img.src = imageSource;
-
+      sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
       target = img;
-      container = containerElement;
-      container.appendChild( target );
-       
-      // Bind mouse move
-      container.addEventListener( 'mousemove', onMouseMove, false );
-      container.addEventListener( 'resize', setDimensions, false );
 
+      container = document.createElement( 'div' );
+      container.appendChild( target );
+
+      document.body.appendChild( container );
+       
+      bindEvents();
       createViewer();
       loop();
       
       return this;
+    }
+
+    function bindEvents() {
+      container.addEventListener( 'mousemove', onMouseMove, false );
+      window.addEventListener( 'resize', setDimensions, false );
+      container.addEventListener( 'click', removeViewer, false )
+    }
+
+    function unbindEvents() {
+      container.removeEventListener( 'mousemove', onMouseMove, false );
+      window.removeEventListener( 'resize', setDimensions, false );
+      container.removeEventListener( 'click', removeViewer, false )
     }
   
     function onMouseMove( event ) {
@@ -159,25 +195,25 @@ var imageViewer = (function() {
       }
     }
 
-    function main( src, container ) {
+    function main( src ) {
 
         // Parse arguments
 
-        if ( !src || !container ) {
+        if ( !src ) {
 
-            throw 'You must supply a target and a container';
+            throw 'You must pass an image source';
         }
       
         // Do it
-        var scrollSystem = startTracking( src, container );
+        var scrollSystem = startTracking( src );
 
         return scrollSystem;
     }
 
     return extend( main, {
+        resize: setDimensions,
         start: start,
-        stop: stop,
-        resize: setDimensions
+        stop: stop
     });
 
 })();
