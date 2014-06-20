@@ -115,8 +115,7 @@ var imageViewer = (function() {
       applyProperties( container, containerProperties );
 
       var imageProperties = {
-        'webkitTransition': '-webkit-transform 800ms cubic-bezier( 0, 0, .26, 1 )',
-        'pointerEvents': 'none'
+        'webkitTransition': '-webkit-transform 800ms cubic-bezier( 0, 0, .26, 1 )'
       }
 
       applyProperties( target, imageProperties );
@@ -140,6 +139,7 @@ var imageViewer = (function() {
       targetDimensions = { w: target.width, h: target.height };
       containerDimensions = { w: container.offsetWidth, h: container.offsetHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
+
     }
 
     function startTracking( imageSource ) {
@@ -155,6 +155,8 @@ var imageViewer = (function() {
          
         bindEvents();
         createViewer();
+
+
         loop();
       }
 
@@ -230,4 +232,12 @@ var imageViewer = (function() {
     });
 
 })();
+
+
+// if( horizontalOrientation === true ) {
+//   target.style['webkitTransform'] = 'translate3d(' + (overflowArea.x / 2) + 'px, 0px, 0px)';
+// } else {
+//   target.style['webkitTransform'] = 'translate3d( 0px,' + (overflowArea.y / 2) + 'px, 0px )';
+// }
+
 
