@@ -25,7 +25,9 @@ var imageViewer = (function() {
     var mouse = { x:0, y:0 };
     var mouseEvent;
 
-    // Variable to handle mouse position  
+    var horizontalOrientation = true;
+
+    // Holds the animation frame id.
     var looper;
   
     // Current position of scrolly element
@@ -41,16 +43,6 @@ var imageViewer = (function() {
   
     var overflowArea = { x: 0, y: 0 };
 
-
-    // Tweening.
-    var tweenTime = 600; //ms
-    var currentTime, startTime;
-
-    var startPosition, endPosition, containerPosition = 1;
-
-    var trackingPosition = 1;
-
-    var firstTween = false;
 
     /* -------------------------
     /*          UTILS
@@ -76,17 +68,18 @@ var imageViewer = (function() {
       }
     }
 
-    // Returns whether target a vertical or horizontal fit in container
+    // Returns whether target a vertical or horizontal fit in container.
+    // As well as the right fitting width/height of the image.
     function getFit( source, container ) {
 
-      var width = source.w;
-      var height = source.h;
+      var heightRatio = container.offsetHeight / source.h;
 
-      var ratio = container.offsetHeight / source.h;
-
-      console.log( { w: width * ratio, h: height * ratio} );
-      return { w: width * ratio, h: height * ratio};
-
+      if( (source.w * heightRatio) > container.offsetWidth ) {
+        return { w: source.w * heightRatio, h: source.h * heightRatio, fit: true };
+      } else {
+        var widthRatio = container.offsetWidth / source.w;
+        return { w: source.w * widthRatio, h: source.h * widthRatio, fit: false };
+      }
     }
 
     /* -------------------------
@@ -127,7 +120,7 @@ var imageViewer = (function() {
       }
 
       applyProperties( target, imageProperties );
-      setTimeout( setDimensions, 0 );
+      setDimensions();
     }
 
     function removeViewer() {
@@ -138,9 +131,11 @@ var imageViewer = (function() {
 
     function setDimensions() {
 
+      // Manually set height to stop bug where 
       var imageDimensions = getFit(sourceDimensions, container);
       target.width = imageDimensions.w;
       target.height = imageDimensions.h;
+      horizontalOrientation = imageDimensions.fit;
 
       targetDimensions = { w: target.width, h: target.height };
       containerDimensions = { w: container.offsetWidth, h: container.offsetHeight };
@@ -150,18 +145,21 @@ var imageViewer = (function() {
     function startTracking( imageSource ) {
       
       var img = new Image();
+      img.onload = function() {
+
+        sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
+
+        container = document.createElement( 'div' );
+        container.appendChild( target );
+        document.body.appendChild( container );
+         
+        bindEvents();
+        createViewer();
+        loop();
+      }
+
       img.src = imageSource;
-      sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
       target = img;
-
-      container = document.createElement( 'div' );
-      container.appendChild( target );
-
-      document.body.appendChild( container );
-       
-      bindEvents();
-      createViewer();
-      loop();
       
       return this;
     }
@@ -184,14 +182,29 @@ var imageViewer = (function() {
     }
   
     function positionTarget() {
-      currentPosition += (mouse.x - currentPosition);
 
-      if( mouse.x !== lastPosition ) {
-        var position = parseFloat(currentPosition / containerDimensions.w );
-        position = Math.ceil(overflowArea.x * position);
+      if ( horizontalOrientation === true ) {
 
-        target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
-        lastPosition = mouse.x;
+        // HORIZONTAL SCANNING
+        currentPosition += (mouse.x - currentPosition);
+        if( mouse.x !== lastPosition  ) {
+
+          var position = parseFloat(currentPosition / containerDimensions.w );
+          position = Math.ceil(overflowArea.x * position);
+          target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+          lastPosition = mouse.x;
+
+        }
+      } else if ( horizontalOrientation === false ) {
+
+        // VERTICAL SCANNING
+        currentPosition += (mouse.y - currentPosition);
+        if( mouse.y !== lastPosition  ) {
+          var position = parseFloat(currentPosition / containerDimensions.h );
+          position = Math.ceil(overflowArea.y * position);
+          target.style[ 'webkitTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+          lastPosition = mouse.y;
+        }
       }
     }
 

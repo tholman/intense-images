@@ -11,15 +11,22 @@
     </head>
     <body>
 		<div class="centered">
-			<img src="/img/panorama.jpg" />
+			<img src="/img/tall.jpg" class="first" />
+			<br>*
+			<br>
+			<img src="/img/panorama.jpg" class="second" />
 		</div>
 		<script>
-			var image = document.querySelector( 'img' );
-			var container = document.querySelector( '.container' );
+			var image1 = document.querySelector( '.first' );
+			var image2 = document.querySelector( '.second' );
 			var a;
 
-			image.onclick = function() {
-				a = imageViewer( image.src )
+			image1.onclick = function() {
+				a = imageViewer( image1.src )
+			}
+
+			image2.onclick = function() {
+				a = imageViewer( image2.src )
 			}
 			// var a = 
 
