@@ -17,11 +17,9 @@ window.cancelRequestAnimFrame = ( function() {
 } )();
 
 
-// Using GSAPS Tween light
 var imageViewer = (function() {
 
     'use strict';
-    // TODO: Extend module to allow horizontal and vertical 
     var mouse = { x:0, y:0 };
     var mouseEvent;
 
@@ -72,12 +70,12 @@ var imageViewer = (function() {
     // As well as the right fitting width/height of the image.
     function getFit( source, container ) {
 
-      var heightRatio = container.offsetHeight / source.h;
+      var heightRatio = window.innerHeight / source.h;
 
-      if( (source.w * heightRatio) > container.offsetWidth ) {
+      if( (source.w * heightRatio) > window.innerWidth ) {
         return { w: source.w * heightRatio, h: source.h * heightRatio, fit: true };
       } else {
-        var widthRatio = container.offsetWidth / source.w;
+        var widthRatio = window.innerWidth / source.w;
         return { w: source.w * widthRatio, h: source.h * widthRatio, fit: false };
       }
     }
@@ -99,7 +97,10 @@ var imageViewer = (function() {
         positionTarget();      
     }
 
-    function createViewer() {
+    function createViewer( title ) {
+
+      container = document.createElement( 'div' );
+      container.appendChild( target );
 
       var containerProperties = {
         'backgroundColor': 'rgba(0,0,0,0.8)',
@@ -121,6 +122,11 @@ var imageViewer = (function() {
 
       applyProperties( target, imageProperties );
       setDimensions();
+
+      mouse.x = window.innerWidth / 2;
+      mouse.y = window.innerHeight / 2;
+      
+      document.body.appendChild( container );
     }
 
     function removeViewer() {
@@ -138,31 +144,24 @@ var imageViewer = (function() {
       horizontalOrientation = imageDimensions.fit;
 
       targetDimensions = { w: target.width, h: target.height };
-      containerDimensions = { w: container.offsetWidth, h: container.offsetHeight };
+      containerDimensions = { w: window.innerWidth, h: window.innerHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
 
     }
 
-    function startTracking( imageSource ) {
+    function startTracking( imageSource, title ) {
       
       var img = new Image();
       img.onload = function() {
 
         sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
-
-        container = document.createElement( 'div' );
-        container.appendChild( target );
-        document.body.appendChild( container );
-         
+        target = this;
+        createViewer( title );
         bindEvents();
-        createViewer();
-
-
         loop();
       }
 
       img.src = imageSource;
-      target = img;
       
       return this;
     }
@@ -211,19 +210,18 @@ var imageViewer = (function() {
       }
     }
 
-    function main( src ) {
+    function main( image ) {
 
-        // Parse arguments
+      // Parse arguments
 
-        if ( !src ) {
+      if ( !image.src ) {
+        throw 'You must pass an image source';
+      }
+    
+      // Do it
+      var scrollSystem = startTracking( image.src, image.getAttribute( 'data-title') );
 
-            throw 'You must pass an image source';
-        }
-      
-        // Do it
-        var scrollSystem = startTracking( src );
-
-        return scrollSystem;
+      return scrollSystem;
     }
 
     return extend( main, {
