@@ -97,7 +97,7 @@ var imageViewer = (function() {
         positionTarget();      
     }
 
-    function createViewer( title ) {
+    function createViewer( title, caption ) {
 
       /*
        *  Container
@@ -130,11 +130,15 @@ var imageViewer = (function() {
        *  Caption Container
        */
       var captionContainerProperties = {
+        'font-family': 'Georgia, Times, "Times New Roman", serif',
         'position': 'fixed',
         'bottom': '0px',
         'left': '0px',
         'padding': '20px',
-        'webkitFontSmoothing': 'antialiased'
+        'color': '#fff',
+        'wordSpacing': '0.2px',
+        'webkitFontSmoothing': 'antialiased',
+        'text-shadow': '-1px 0px 1px rgba(0,0,0,0.4)'
       }
       var captionContainer = document.createElement( 'figcaption' );
       applyProperties( captionContainer, captionContainerProperties );
@@ -144,23 +148,35 @@ var imageViewer = (function() {
        *  Caption Title
        */
       if ( title ) {
-
         var captionTitleProperties = {
-          'font-family': 'Georgia, Times, "Times New Roman", serif',
           'margin': '0px',
           'padding': '0px',
-          'color': '#fff',
           'fontWeight': 'normal',
           'fontSize': '40px',
-          'wordSpacing': '0.2px',
-          'letterSpacing': '0.5px'
+          'letterSpacing': '0.5px',
         }
         var captionTitle = document.createElement( 'h1' );
         applyProperties( captionTitle, captionTitleProperties );
         captionTitle.innerHTML = title;
         captionContainer.appendChild( captionTitle );
-        container.appendChild( captionContainer );
       }
+
+      if ( caption ) {
+        var captionTextProperties = {
+          'margin': '0px',
+          'padding': '0px',
+          'fontWeight': 'normal',
+          'fontSize': '20px',
+          'letterSpacing': '0.1px',
+          'max-width': '500px'
+        }
+        var captionText = document.createElement( 'h2' );
+        applyProperties( captionText, captionTextProperties );
+        captionText.innerHTML = caption;
+        captionContainer.appendChild( captionText );
+      }
+
+      container.appendChild( captionContainer );
 
       setDimensions();
 
@@ -190,14 +206,14 @@ var imageViewer = (function() {
 
     }
 
-    function startTracking( imageSource, title ) {
+    function startTracking( imageSource, title, caption ) {
       
       var img = new Image();
       img.onload = function() {
 
         sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
         target = this;
-        createViewer( title );
+        createViewer( title, caption );
         bindEvents();
         loop();
       }
@@ -259,7 +275,7 @@ var imageViewer = (function() {
       }
     
       // Do it
-      var scrollSystem = startTracking( image.src, image.getAttribute( 'data-title') );
+      var scrollSystem = startTracking( image.src, image.getAttribute( 'data-title'), image.getAttribute( 'data-caption') );
 
       return scrollSystem;
     }
