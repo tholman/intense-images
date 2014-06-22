@@ -111,7 +111,11 @@ var imageViewer = (function() {
         'left': '0px',
         'overflow': 'hidden',
         'zIndex': '999999',
-        'margin': '0px'
+        'margin': '0px',
+        'webkitTransition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
+        'MozTransition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
+        'transition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
+        'opacity': '0'
       }
       container = document.createElement( 'figure' );
       container.appendChild( target );
@@ -187,6 +191,9 @@ var imageViewer = (function() {
       mouse.y = window.innerHeight / 2;
       
       document.body.appendChild( container );
+      setTimeout( function() {
+        container.style[ 'opacity' ] = '1';
+      }, 10);
     }
 
     function removeViewer() {
