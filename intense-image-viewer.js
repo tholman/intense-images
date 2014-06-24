@@ -289,7 +289,9 @@ var imageViewer = (function() {
       }
     
       // Do it
-      var scrollSystem = startTracking( image.src, image.getAttribute( 'data-title'), image.getAttribute( 'data-caption') );
+      var scrollSystem = startTracking( image.getAttribute( 'data-highres') || image.src,
+                                        image.getAttribute( 'data-title'),
+                                        image.getAttribute( 'data-caption') );
 
       return scrollSystem;
     }
