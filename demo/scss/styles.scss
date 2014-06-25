@@ -10,20 +10,56 @@
  *********************************************/
 
 * {
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 html, body {
+	font-family: helvetica;
 	padding: 0px;
 	margin: 0px;
 }
 
-.centered {
-	max-width: 700px;
-	padding-top: 100px;
+.center {
+	-webkit-transform: translateY(-50%);
+	text-align: center;
+	position: absolute;
 	margin: auto;
+	width: 100%;
+	top: 50%;
 
-	img {
-		width: 100%;
+	.left, .right {
+		display: inline-block;
+		background: #fdfdfd;
+		min-height: 500px;
+		width: 400px;
+		overflow: hidden;
+		text-align: left;
+		padding: 30px;
+	}
+
+	h1 {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		letter-spacing: 0.3px;
+		line-height: 28px;
+		font-weight: 400;
+		font-size: 34px;
+		margin: 0px;
+	}
+
+	.divider {
+		display: inline-block;
+	}
+
+	.left {
+	}
+
+	.right {
+	}
+
+	.divider {
+		height: 100%;
+		width: 1px;
+		background: #000;
 	}
 }
