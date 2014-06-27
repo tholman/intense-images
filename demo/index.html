@@ -29,32 +29,19 @@
     		<p>
     			Intense images is a little library to handle viewing images on the full screen. And when I say full screen, I mean full screen.
     			<br><br>
-    			Its easier to look and see... click one of these examples!
+    			Its easier to look and see... click this example!
     		</p>
     	</section>
-    	<section class="examples"></section>
-    	<section class="code"></section>
+    	<section class="examples">
+    		<img src="./img/beach.jpg" class="panorama" data-title="Panoramic Beach" data-caption="Image compliments of unsplash, thanks!" />
+    	</section>
     	<section class="share"></section>
 
-		<!-- <div class="centered">
-			<img src="./img/tall.jpg" class="first" data-title="Freedom Tower" data-caption="Here stands New York Cities tallest building."/>
-			<br>*
-			<br>
-			<img src="./img/panorama.jpg" class="second" />
-		</div> -->
 		<script>
-			// var image1 = document.querySelector( '.first' );
-			// var image2 = document.querySelector( '.second' );
-			// var a;
-
-			// image1.onclick = function() {
-			// 	a = imageViewer( image1 )
-			// }
-
-			// image2.onclick = function() {
-			// 	a = imageViewer( image2 )
-			// }
-			// var a = 
+			var panorama = document.querySelector( '.panorama' );
+			panorama.onclick = function() {
+				imageViewer( this )
+			}
 
 		</script>
     </body>
