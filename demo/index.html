@@ -22,22 +22,25 @@
     		<div class="logo">ii</div>
     		<div class="main">
     			<h1> Intense Image Viewier </h1>
-    			<h1> A javascript library for viewing images full screen. </h1>
+    			<h1> A javascript library for viewing images in fully, full screen. </h1>
     			<h1> Click the images to see it in action!</h1>
     		</div>
-    		<div class="description">
-    		</div>
     	</header>
-
-    	<section>
+    	<section class="demos">
+    		<!-- Using divs for the demo, for formatting... you can use images if you want!  -->
+    		<div class="demo-image first"  data-highres="./img/h1_small.jpg"></div>
+    		<div class="demo-image second" data-highres="./img/v1_small.jpg"></div>
+    		<div class="demo-image third"  data-highres="./img/h2_small.jpg"></div>
+    		<div class="demo-image forth"  data-highres="./img/v2_small.jpg"></div>
     	</section>
 
-		<script>
-			var panorama = document.querySelector( '.panorama' );
-			panorama.onclick = function() {
-				imageViewer( this )
-			}
+    	<footer>
+    		<h1> <a href="http://tholman.com">By Tim Holman</a> &bull; <a href="https://github.com/tholman/intense-images">Source & Instructions</a> &bull;  </h1>
+    	</footer>
 
+		<script>
+			var elements = document.querySelectorAll( '.demo-image' );
+			imageViewer( elements );
 		</script>
     </body>
 </html>

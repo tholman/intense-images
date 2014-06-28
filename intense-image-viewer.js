@@ -83,6 +83,28 @@ var imageViewer = (function() {
     /* -------------------------
     /*          APP
     /* -------------------------*/
+
+    function startTracking( passedElements ) {
+
+      var i;
+
+      // If passed an array of elements, assign tracking to all.
+      if ( passedElements.length > 1 ) {
+
+        // Loop and assign
+        for( i = 0; i < passedElements.length; i++ ) {
+
+          passedElements[ i ].addEventListener( 'click', function() {
+            init( this );
+          }, false);
+        }
+
+      } else {
+        passedElements.addEventListener( 'click', function() {
+          init( this );
+        }, false);
+      }
+    }
   
     function start() { 
       loop();
@@ -216,7 +238,13 @@ var imageViewer = (function() {
 
     }
 
-    function startTracking( imageSource, title, caption ) {
+    function init( element ) {
+
+      console.log( element );
+
+      var imageSource = element.getAttribute( 'data-highres') || element.src;
+      var title = element.getAttribute( 'data-title');
+      var caption = element.getAttribute( 'data-caption');
       
       var img = new Image();
       img.onload = function() {
@@ -229,7 +257,6 @@ var imageViewer = (function() {
       }
 
       img.src = imageSource;
-      return this;
     }
 
     function bindEvents() {
@@ -280,20 +307,17 @@ var imageViewer = (function() {
       }
     }
 
-    function main( image ) {
+    function main( element ) {
 
       // Parse arguments
 
-      if ( !image.src ) {
-        throw 'You must pass an image source';
+      if ( !element ) {
+        throw 'You need to pass an element!';
       }
-    
-      // Do it
-      var scrollSystem = startTracking( image.getAttribute( 'data-highres') || image.src,
-                                        image.getAttribute( 'data-title'),
-                                        image.getAttribute( 'data-caption') );
 
-      return scrollSystem;
+      console.log( "hello" );
+      startTracking( element );
+
     }
 
     return extend( main, {

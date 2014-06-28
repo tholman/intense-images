@@ -34,13 +34,13 @@ body {
   letter-spacing: -7px;
   text-indent: -6px;
   margin: auto;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 20px; }
 
 h1 {
   font-weight: normal;
-  width: 550px;
-  background: #000;
+  width: 600px;
+  background: #0a0a0a;
   color: #fff;
   font-size: 18px;
   height: 55px;
@@ -49,6 +49,35 @@ h1 {
   margin: auto;
   margin-top: 0px;
   margin-bottom: 20px; }
+
+.demos {
+  text-align: center;
+  margin-top: 20px; }
+
+.demo-image {
+  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3Q0IyNDI2RkFFMkYxMUUzOEQzQUQ5NTMxMDAwQjJGRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0IyNDI3MEFFMkYxMUUzOEQzQUQ5NTMxMDAwQjJGRCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjdDQjI0MjZEQUUyRjExRTM4RDNBRDk1MzEwMDBCMkZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjdDQjI0MjZFQUUyRjExRTM4RDNBRDk1MzEwMDBCMkZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rk3ctwAABdRJREFUeNrcWn1M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") 25 25, auto;
+  display: inline-block;
+  width: 290px;
+  height: 290px;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 16px; }
+  .demo-image.first {
+    background-image: url("../img/h1_small.jpg"); }
+  .demo-image.second {
+    background-position: 50% 10%;
+    background-image: url("../img/v1_small.jpg"); }
+  .demo-image.third {
+    background-image: url("../img/h2_small.jpg"); }
+  .demo-image.forth {
+    background-position: 50% 90%;
+    background-image: url("../img/v2_small.jpg"); }
+
+footer h1 {
+  background: #e9e9e9;
+  color: #0a0a0a; }
 
 .github-link {
   position: fixed;
