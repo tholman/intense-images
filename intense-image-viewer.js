@@ -93,16 +93,21 @@ var imageViewer = (function() {
 
         // Loop and assign
         for( i = 0; i < passedElements.length; i++ ) {
-
-          passedElements[ i ].addEventListener( 'click', function() {
-            init( this );
-          }, false);
+          track( passedElements[ i ] );
         }
 
       } else {
-        passedElements.addEventListener( 'click', function() {
+          track( passedElements );
+      }
+    }
+
+    function track( element ) {
+
+      // Element needs a src at minumun.
+      if( element.getAttribute( 'data-highres') || element.src ) {
+        element.addEventListener( 'click', function() {
           init( this );
-        }, false);
+        })
       }
     }
   
