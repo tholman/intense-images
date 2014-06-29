@@ -38,7 +38,7 @@ body {
   margin-bottom: 20px;
   margin-top: 20px; }
 
-h1 {
+header h1, footer h1 {
   font-weight: normal;
   width: 604px;
   background: #222222;

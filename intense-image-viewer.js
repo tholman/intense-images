@@ -189,6 +189,8 @@ var imageViewer = (function() {
           'fontWeight': 'normal',
           'fontSize': '40px',
           'letterSpacing': '0.5px',
+          'lineHeight': '35px',
+          'textAlign': 'left'
         }
         var captionTitle = document.createElement( 'h1' );
         applyProperties( captionTitle, captionTitleProperties );
@@ -203,7 +205,10 @@ var imageViewer = (function() {
           'fontWeight': 'normal',
           'fontSize': '20px',
           'letterSpacing': '0.1px',
-          'maxWidth': '500px'
+          'maxWidth': '500px',
+          'textAlign': 'left',
+          'background': 'none',
+          'marginTop': '5px'
         }
         var captionText = document.createElement( 'h2' );
         applyProperties( captionText, captionTextProperties );

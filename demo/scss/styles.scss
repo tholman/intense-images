@@ -46,17 +46,19 @@ body {
 	margin-top: 20px;
 }
 
-h1 {
-	font-weight: normal;
-	width: 604px;
-	background: $black;
-	color: #fff;
-	font-size: 18px;
-	height: 55px;
-	line-height: 55px;
-	margin: auto;
-	margin-top: 0px;
-	margin-bottom: 20px;
+header, footer {
+	h1 {
+		font-weight: normal;
+		width: 604px;
+		background: $black;
+		color: #fff;
+		font-size: 18px;
+		height: 55px;
+		line-height: 55px;
+		margin: auto;
+		margin-top: 0px;
+		margin-bottom: 20px;
+	}
 }
 
 .demos {
