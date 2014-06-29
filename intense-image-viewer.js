@@ -107,7 +107,7 @@ var imageViewer = (function() {
       if( element.getAttribute( 'data-highres') || element.src ) {
         element.addEventListener( 'click', function() {
           init( this );
-        })
+        }, false );
       }
     }
   
