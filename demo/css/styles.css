@@ -20,7 +20,8 @@ html, body {
 
 body {
   padding: 20px;
-  text-align: center; }
+  text-align: center;
+  min-width: 700px; }
 
 .logo {
   width: 55px;
