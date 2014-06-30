@@ -104,7 +104,7 @@ var Intense = (function() {
     function track( element ) {
 
       // Element needs a src at minumun.
-      if( element.getAttribute( 'data-highres') || element.src ) {
+      if( element.getAttribute( 'data-image') || element.src ) {
         element.addEventListener( 'click', function() {
           init( this );
         }, false );
@@ -251,7 +251,7 @@ var Intense = (function() {
 
     function init( element ) {
 
-      var imageSource = element.getAttribute( 'data-highres') || element.src;
+      var imageSource = element.getAttribute( 'data-image') || element.src;
       var title = element.getAttribute( 'data-title');
       var caption = element.getAttribute( 'data-caption');
       

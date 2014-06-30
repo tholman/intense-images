@@ -8,14 +8,14 @@ Intense images is a stand alone library (no jquery, or the likes) so usage is pr
 
 #### HTML
 
-There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-highres`, which needs to point to an image file.
+There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-image`, which needs to point to an image file.
 
 ```html
 <img src="./img/awesome-source.jpg" />
 
 <!-- OR -->
 
-<div class="anything" data-highres="./img/awesome-source.jpg" />
+<div class="anything" data-image="./img/awesome-source.jpg" />
 ```
 
 You can also pass through titles, and subcaptions, which will appear at the bottom right of the viewer. To do this, you use the `data-title` and `data-caption` attributes.
