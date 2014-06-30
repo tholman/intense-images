@@ -1,14 +1,14 @@
 # Intense Images
 
-A stand alone javascript library for viewing images on the full, full screen. [Here's a demo](http://tholman.com/intense-images)!
+A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here's a demo](http://tholman.com/intense-images)!
 
 ### Instructions
 
-Intense images is a stand alone library (no jquery, or the likes) so usage is pretty straight forward. All styling of image elements is up to the user, ```Intense.js``` only handles the creation, styling and management of the image viewer, loader and captions.
+Intense images is a stand alone library (no jquery, or the likes) so usage is pretty straight forward. All styling of image elements is up to the user, ```Intense.js``` only handles the creation, styling and management of the image viewer and captions.
 
 #### HTML
 
-There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-image`, which needs to point to an image file.
+There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-image`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).
 
 ```html
 <img src="./img/awesome-source.jpg" />
