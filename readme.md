@@ -58,7 +58,7 @@ window.onload = function() {
 #### CSS
 There aren't any css restrictions. Although you'll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.
 
- If you wish to use the ```+``` cursor, you can fine the image in the demo folder, here's the css snippet.
+If you wish to use the `+` cursor, you can fine the image in the demo folder, here's the css snippet.
 
 ```css
 .intense {
@@ -76,4 +76,4 @@ Here's a quick screenshot of Intense.js in action. You should really look at the
 
 The MIT License (MIT)
 
-Copyright (c) 2014 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com
+Copyright (C) 2014 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com

@@ -89,7 +89,7 @@ var Intense = (function() {
       var i;
 
       // If passed an array of elements, assign tracking to all.
-      if ( passedElements.length > 1 ) {
+      if ( passedElements.length ) {
 
         // Loop and assign
         for( i = 0; i < passedElements.length; i++ ) {
