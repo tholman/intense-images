@@ -71,9 +71,6 @@ header h1, footer h1 {
     background-image: url("../img/v1_small.jpg"); }
   .demo-image.third {
     background-image: url("../img/h2_small.jpg"); }
-  .demo-image.forth {
-    background-position: 50% 90%;
-    background-image: url("../img/v2_small.jpg"); }
 
 footer h1 {
   padding-left: 20px;
