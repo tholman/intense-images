@@ -17,7 +17,7 @@ window.cancelRequestAnimFrame = ( function() {
 } )();
 
 
-var imageViewer = (function() {
+var Intense = (function() {
 
     'use strict';
     var mouse = { x:0, y:0 };
