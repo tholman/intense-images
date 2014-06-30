@@ -61,7 +61,7 @@ There aren't any css restrictions. Although you'll want to avoid tainting the js
 If you wish to use the `+` cursor, you can fine the image in the demo folder, here's the css snippet.
 
 ```css
-.intense {
+.your-image-class {
 	cursor: url('./you-image-directory/plus_cursor.png') 25 25, auto;
 }
 ```
