@@ -41,6 +41,9 @@ var Intense = (function() {
   
     var overflowArea = { x: 0, y: 0 };
 
+    // Overflow variable before screen is locked.
+    var overflowValue;
+
 
     /* -------------------------
     /*          UTILS
@@ -122,6 +125,18 @@ var Intense = (function() {
     function loop() {
         looper = requestAnimFrame(loop);
         positionTarget();      
+    }
+
+    // Lock scroll on the document body.
+    function lockBody() {
+
+      overflowValue = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Unlock scroll on the document body.
+    function unlockBody() {
+      document.body.style.overflow = overflowValue;
     }
 
     function createViewer( title, caption ) {
@@ -231,6 +246,7 @@ var Intense = (function() {
 
     function removeViewer() {
 
+      unlockBody();
       unbindEvents();
       document.body.removeChild( container );
     }
@@ -261,6 +277,7 @@ var Intense = (function() {
         sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
         target = this;
         createViewer( title, caption );
+        lockBody();
         bindEvents();
         loop();
       }
