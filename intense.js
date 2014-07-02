@@ -20,6 +20,9 @@ window.cancelRequestAnimFrame = ( function() {
 var Intense = (function() {
 
     'use strict';
+
+    var KEYCODE_ESC = 27;
+
     // Track both the current and destination mouse coordinates
     // Destination coordinates are non-eased actual mouse coordinates
     var mouse = { xCurr:0, yCurr:0, xDest: 0, yDest: 0 };
@@ -33,19 +36,15 @@ var Intense = (function() {
     // Current position of scrolly element
     var lastPosition, currentPosition = 0;
     
-    var source, sourceDimensions;
-
-    var target;
+    var source, sourceDimensions, target;
     var targetDimensions = { w: 0, h: 0 };
   
     var container;
     var containerDimensions = { w: 0, h:0 };
-  
     var overflowArea = { x: 0, y: 0 };
 
     // Overflow variable before screen is locked.
     var overflowValue;
-
 
     /* -------------------------
     /*          UTILS
@@ -281,18 +280,20 @@ var Intense = (function() {
 
     function bindEvents() {
 
-      container.addEventListener( 'mousemove', onMouseMove, false );
-      container.addEventListener("touchmove", onTouchMove, false);
-      window.addEventListener( 'resize', setDimensions, false );
-      target.addEventListener( 'click', removeViewer, false )
+      container.addEventListener( 'mousemove', onMouseMove,   false );
+      container.addEventListener( 'touchmove', onTouchMove,   false );
+      window.addEventListener(    'resize',    setDimensions, false );
+      window.addEventListener(    'keyup',     onKeyUp,       false );
+      target.addEventListener(    'click',     removeViewer,  false );
     }
 
     function unbindEvents() {
 
-      container.removeEventListener( 'mousemove', onMouseMove, false );
-      container.removeEventListener("touchmove", onTouchMove, false);
-      window.removeEventListener( 'resize', setDimensions, false );
-      target.removeEventListener( 'click', removeViewer, false )
+      container.removeEventListener( 'mousemove', onMouseMove,   false );
+      container.removeEventListener( 'touchmove', onTouchMove,   false);
+      window.removeEventListener(    'resize',    setDimensions, false );
+      window.removeEventListener(    'keyup',     onKeyUp,       false );
+      target.removeEventListener(    'click',     removeViewer,  false )
     }
   
     function onMouseMove( event ) {
@@ -306,6 +307,15 @@ var Intense = (function() {
       mouse.xDest = event.touches[0].clientX;
       mouse.yDest = event.touches[0].clientY;
     }
+
+    // Exit on excape key pressed;
+    function onKeyUp( event ) {
+
+      event.preventDefault();
+      if ( event.keyCode === KEYCODE_ESC ) {
+        removeViewer();
+      } 
+    }
   
     function positionTarget() {
 
@@ -315,9 +325,9 @@ var Intense = (function() {
       if ( horizontalOrientation === true ) {
 
         // HORIZONTAL SCANNING
-        currentPosition += (mouse.xCurr - currentPosition);
-        if( mouse.xCurr !== lastPosition  ) {
-          var position = parseFloat(currentPosition / containerDimensions.w );
+        currentPosition += ( mouse.xCurr - currentPosition );
+        if( mouse.xCurr !== lastPosition ) {
+          var position = parseFloat( currentPosition / containerDimensions.w );
           position = overflowArea.x * position;
           target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
           target.style[ 'MozTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
@@ -327,9 +337,9 @@ var Intense = (function() {
       } else if ( horizontalOrientation === false ) {
 
         // VERTICAL SCANNING
-        currentPosition += (mouse.yCurr - currentPosition);
-        if( mouse.yCurr !== lastPosition  ) {
-          var position = parseFloat(currentPosition / containerDimensions.h );
+        currentPosition += ( mouse.yCurr - currentPosition );
+        if( mouse.yCurr !== lastPosition ) {
+          var position = parseFloat( currentPosition / containerDimensions.h );
           position = overflowArea.y * position;
           target.style[ 'webkitTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
           target.style[ 'MozTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
