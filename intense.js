@@ -173,7 +173,7 @@ var Intense = (function() {
        *  Caption Container
        */
       var captionContainerProperties = {
-        'font-family': 'Georgia, Times, "Times New Roman", serif',
+        'fontFamily': 'Georgia, Times, "Times New Roman", serif',
         'position': 'fixed',
         'bottom': '0px',
         'left': '0px',
