@@ -26,7 +26,6 @@ var Intense = (function() {
     // Track both the current and destination mouse coordinates
     // Destination coordinates are non-eased actual mouse coordinates
     var mouse = { xCurr:0, yCurr:0, xDest: 0, yDest: 0 };
-    var mouseEvent;
 
     var horizontalOrientation = true;
 
@@ -36,7 +35,7 @@ var Intense = (function() {
     // Current position of scrolly element
     var lastPosition, currentPosition = 0;
     
-    var source, sourceDimensions, target;
+    var sourceDimensions, target;
     var targetDimensions = { w: 0, h: 0 };
   
     var container;
@@ -72,7 +71,9 @@ var Intense = (function() {
 
     // Returns whether target a vertical or horizontal fit in the page.
     // As well as the right fitting width/height of the image.
-    function getFit( source ) {
+    function getFit( 
+
+      source ) {
 
       var heightRatio = window.innerHeight / source.h;
 
@@ -247,7 +248,7 @@ var Intense = (function() {
     function setDimensions() {
 
       // Manually set height to stop bug where 
-      var imageDimensions = getFit(sourceDimensions, container);
+      var imageDimensions = getFit( sourceDimensions );
       target.width = imageDimensions.w;
       target.height = imageDimensions.h;
       horizontalOrientation = imageDimensions.fit;
