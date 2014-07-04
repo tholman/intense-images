@@ -70,9 +70,9 @@ var Intense = (function() {
       }
     }
 
-    // Returns whether target a vertical or horizontal fit in container.
+    // Returns whether target a vertical or horizontal fit in the page.
     // As well as the right fitting width/height of the image.
-    function getFit( source, container ) {
+    function getFit( source ) {
 
       var heightRatio = window.innerHeight / source.h;
 
