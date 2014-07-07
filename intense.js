@@ -187,7 +187,6 @@ var Intense = (function() {
       var captionContainer = document.createElement( 'figcaption' );
       applyProperties( captionContainer, captionContainerProperties );
 
-
       /*
        *  Caption Title
        */
@@ -305,6 +304,7 @@ var Intense = (function() {
 
     function onTouchMove( event ) {
 
+      event.preventDefault(); // Needed to keep this event firing.
       mouse.xDest = event.touches[0].clientX;
       mouse.yDest = event.touches[0].clientY;
     }
