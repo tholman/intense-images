@@ -264,6 +264,12 @@ var Intense = (function() {
       var title = element.getAttribute( 'data-title');
       var caption = element.getAttribute( 'data-caption');
       
+      // Add loading css class for styling element while loading
+      var elemClasses = element.className.split(' ');
+      elemClasses.push('intense-loading')
+      element.className = elemClasses.join(' ');
+      
+
       var img = new Image();
       img.onload = function() {
 
@@ -273,6 +279,9 @@ var Intense = (function() {
         lockBody();
         bindEvents();
         loop();
+
+        // remove loading css class
+        element.className = element.className.replace('intense-loading', '');
       }
 
       img.src = imageSource;
