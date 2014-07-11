@@ -24,6 +24,12 @@ You can also pass through titles, and subcaptions, which will appear at the bott
 <img src="./img/awesome-source.jpg" data-title="My beach adventure" data-caption="Thanks Sam, for the great picture"/>
 ```
 
+You can use the `data-background` attribute to define container background.
+
+```html
+<img src="./img/transparent-image.png" data-background="rgba(255,255,255,.9)">
+```
+
 #### JS
 
 Intense.js is fairly robust when it comes to assigning elements to be used, its as simple as passing them to the ```Intense``` function, once they have been rendered. You can do this with `document.querySelector` finding your elements however you like.
