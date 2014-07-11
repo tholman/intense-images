@@ -33,9 +33,9 @@ Intense.js is fairly robust when it comes to assigning elements to be used, its 
 
 <script>
 window.onload = function() {
-	// Intensify all images on the page.
+  // Intensify all images on the page.
     var element = document.querySelector( 'img' );
-	Intense( element );
+  Intense( element );
 }
 </script>
 ```
@@ -48,9 +48,9 @@ Or doing multiple at once, with a classname.
 
 <script>
 window.onload = function() {
-	// Intensify all images with the 'intense' classname.
+  // Intensify all images with the 'intense' classname.
     var elements = document.querySelectorAll( '.intense' );
-	Intense( elements );
+  Intense( elements );
 }
 </script>
 ```
@@ -62,7 +62,7 @@ If you wish to use the `+` cursor, you can fine the image in the demo folder, he
 
 ```css
 .your-image-class {
-	cursor: url('./you-image-directory/plus_cursor.png') 25 25, auto;
+  cursor: url('./you-image-directory/plus_cursor.png') 25 25, auto;
 }
 ```
 
