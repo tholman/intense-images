@@ -24,6 +24,12 @@ You can also pass through titles, and subcaptions, which will appear at the bott
 <img src="./img/awesome-source.jpg" data-title="My beach adventure" data-caption="Thanks Sam, for the great picture"/>
 ```
 
+You can use the `data-background` attribute to define container background.
+
+```html
+<img src="./img/transparent-image.png" data-background="rgba(255,255,255,.9)">
+```
+
 #### JS
 
 Intense.js is fairly robust when it comes to assigning elements to be used, its as simple as passing them to the ```Intense``` function, once they have been rendered. You can do this with `document.querySelector` finding your elements however you like.
@@ -33,9 +39,9 @@ Intense.js is fairly robust when it comes to assigning elements to be used, its 
 
 <script>
 window.onload = function() {
-	// Intensify all images on the page.
+  // Intensify all images on the page.
     var element = document.querySelector( 'img' );
-	Intense( element );
+  Intense( element );
 }
 </script>
 ```
@@ -48,9 +54,9 @@ Or doing multiple at once, with a classname.
 
 <script>
 window.onload = function() {
-	// Intensify all images with the 'intense' classname.
+  // Intensify all images with the 'intense' classname.
     var elements = document.querySelectorAll( '.intense' );
-	Intense( elements );
+  Intense( elements );
 }
 </script>
 ```
@@ -62,7 +68,7 @@ If you wish to use the `+` cursor, you can fine the image in the demo folder, he
 
 ```css
 .your-image-class {
-	cursor: url('./you-image-directory/plus_cursor.png') 25 25, auto;
+  cursor: url('./you-image-directory/plus_cursor.png') 25 25, auto;
 }
 ```
 
