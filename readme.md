@@ -8,7 +8,7 @@ Intense images is a stand alone library (no jquery, or the likes) so usage is pr
 
 #### HTML
 
-There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-image`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).
+There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one mandatory attribute is either a `src` or a `data-image`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).
 
 ```html
 <img src="./img/awesome-source.jpg" />
