@@ -1,6 +1,6 @@
 # Intense Images
 
-A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here's a demo](http://tholman.com/intense-images)!
+A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here's a demo](http://tholman.com/intense-images)! You can also play with the code [live on CodePen](http://codepen.io/tholman/pen/mlDiK).
 
 ### Instructions
 
