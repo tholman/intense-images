@@ -1,6 +1,6 @@
 # Intense Images
 
-A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here's a demo](http://tholman.com/intense-images)!
+A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here's a demo](http://tholman.com/intense-images)! You can also play with the code [live on CodePen](http://codepen.io/tholman/pen/mlDiK).
 
 ### Instructions
 
@@ -8,7 +8,7 @@ Intense images is a stand alone library (no jquery, or the likes) so usage is pr
 
 #### HTML
 
-There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one manditory attribute is either a `src` or a `data-image`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).
+There aren't many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one mandatory attribute is either a `src` or a `data-image`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).
 
 ```html
 <img src="./img/awesome-source.jpg" />
@@ -58,7 +58,7 @@ window.onload = function() {
 #### CSS
 There aren't any css restrictions. Although you'll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.
 
-If you wish to use the `+` cursor, you can fine the image in the demo folder, here's the css snippet.
+If you wish to use the `+` cursor, you can find the image in the demo folder, here's the css snippet.
 
 ```css
 .your-image-class {
@@ -71,6 +71,10 @@ If you wish to use the `+` cursor, you can fine the image in the demo folder, he
 Here's a quick screenshot of Intense.js in action. You should really look at the [demo](http://tholman.com/intense-images) though, to get a full feel for the interactions.
 
 ![Intense.js in action](http://i.imgur.com/C98D6tw.png "Image Viewer")
+
+###Browser support
+
+Intense has been tested in the latest stable builds of Safari, Chrome and Firefox. It "should work" in Internet Explorer 9 and up as well.
 
 ### License
 
