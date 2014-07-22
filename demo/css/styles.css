@@ -55,7 +55,7 @@ header h1, footer h1 {
   margin-top: 20px; }
 
 .demo-image {
-  cursor: url("../img/plus_cursor.png") 25 25, auto;
+  cursor: url("../img/plus_cursor.png") 25 25, pointer;
   display: inline-block;
   width: 290px;
   height: 290px;
