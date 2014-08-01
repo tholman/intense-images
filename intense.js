@@ -241,6 +241,7 @@ var Intense = (function() {
 
       unlockBody();
       unbindEvents();
+      stop();
       document.body.removeChild( container );
     }
 
