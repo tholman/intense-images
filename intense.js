@@ -31,13 +31,13 @@ var Intense = (function() {
 
     // Holds the animation frame id.
     var looper;
-  
+
     // Current position of scrolly element
     var lastPosition, currentPosition = 0;
-    
+
     var sourceDimensions, target;
     var targetDimensions = { w: 0, h: 0 };
-  
+
     var container;
     var containerDimensions = { w: 0, h:0 };
     var overflowArea = { x: 0, y: 0 };
@@ -71,7 +71,7 @@ var Intense = (function() {
 
     // Returns whether target a vertical or horizontal fit in the page.
     // As well as the right fitting width/height of the image.
-    function getFit( 
+    function getFit(
 
       source ) {
 
@@ -109,24 +109,27 @@ var Intense = (function() {
     function track( element ) {
 
       // Element needs a src at minumun.
-      if( element.getAttribute( 'data-image') || element.src ) {
-        element.addEventListener( 'click', function() {
+      if( element.getAttribute( 'data-image') || element.src || element.href ) {
+        element.addEventListener( 'click', function(e) {
+          if(element.tagName === 'A'){
+            e.preventDefault();
+          }
           init( this );
         }, false );
       }
     }
-  
-    function start() { 
+
+    function start() {
       loop();
     }
-   
+
     function stop() {
       cancelRequestAnimFrame( looper );
     }
 
     function loop() {
         looper = requestAnimFrame(loop);
-        positionTarget();      
+        positionTarget();
     }
 
     // Lock scroll on the document body.
@@ -230,7 +233,7 @@ var Intense = (function() {
 
       mouse.xCurr = mouse.xDest = window.innerWidth / 2;
       mouse.yCurr = mouse.yDest = window.innerHeight / 2;
-      
+
       document.body.appendChild( container );
       setTimeout( function() {
         container.style[ 'opacity' ] = '1';
@@ -247,7 +250,7 @@ var Intense = (function() {
 
     function setDimensions() {
 
-      // Manually set height to stop bug where 
+      // Manually set height to stop bug where
       var imageDimensions = getFit( sourceDimensions );
       target.width = imageDimensions.w;
       target.height = imageDimensions.h;
@@ -261,10 +264,10 @@ var Intense = (function() {
 
     function init( element ) {
 
-      var imageSource = element.getAttribute( 'data-image') || element.src;
-      var title = element.getAttribute( 'data-title');
+      var imageSource = element.getAttribute( 'data-image') || element.src || element.href;
+      var title = element.getAttribute( 'data-title') || element.title;
       var caption = element.getAttribute( 'data-caption');
-      
+
       var img = new Image();
       img.onload = function() {
 
@@ -296,7 +299,7 @@ var Intense = (function() {
       window.removeEventListener(    'keyup',     onKeyUp,       false );
       target.removeEventListener(    'click',     removeViewer,  false )
     }
-  
+
     function onMouseMove( event ) {
 
       mouse.xDest = event.clientX;
@@ -316,9 +319,9 @@ var Intense = (function() {
       event.preventDefault();
       if ( event.keyCode === KEYCODE_ESC ) {
         removeViewer();
-      } 
+      }
     }
-  
+
     function positionTarget() {
 
       mouse.xCurr += ( mouse.xDest - mouse.xCurr ) * 0.05;

@@ -8,7 +8,7 @@
         <link href='./css/styles.css' rel='stylesheet'>
 
         <!-- JS -->
-        <script src='../intense.js'></script>
+        <script src='../intense.min.js'></script>
 
         <!-- FONTS -->
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
@@ -30,10 +30,14 @@
     		<div class="demo-image third"  data-image="./img/h2_small.jpg" data-title="Chilling sheep" data-caption="To your breed, your fleece, your clan be true!"></div>
     	</section>
 
+        <header>
+            <h1>And it also works on <a href="./img/h2_small.jpg" title="My title" data-caption="To your breed, your fleece, your clan" class="demo-link">links</a> now ^^</h1>
+        </header>
+
     	<footer>
     		<h1> <a href="http://tholman.com">
     			By Tim Holman</a> &bull;
-    			<a href="https://github.com/tholman/intense-images">Source & Instructions</a> &bull;  
+    			<a href="https://github.com/tholman/intense-images">Source & Instructions</a> &bull;
     			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Intense.js - images for the full screen -" data-via="twholman">Tweet</a>
     		</h1>
     	</footer>
@@ -45,6 +49,7 @@
 		<script>
 			var elements = document.querySelectorAll( '.demo-image' );
 			Intense( elements );
+            Intense( document.querySelectorAll('.demo-link') );
 		</script>
 
 		<!-- Tweet Button -->
