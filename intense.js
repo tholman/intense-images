@@ -261,9 +261,12 @@ var Intense = (function() {
 
     function init( element ) {
 
+      if(hasClass(element, 'loading')) return;
+
       var imageSource = element.getAttribute( 'data-image') || element.src;
       var title = element.getAttribute( 'data-title');
       var caption = element.getAttribute( 'data-caption');
+      addClass(element, 'loading');
       
       var img = new Image();
       img.onload = function() {
@@ -274,6 +277,7 @@ var Intense = (function() {
         lockBody();
         bindEvents();
         loop();
+        removeClass(element, 'loading');
       }
 
       img.src = imageSource;
@@ -331,9 +335,16 @@ var Intense = (function() {
         if( mouse.xCurr !== lastPosition ) {
           var position = parseFloat( currentPosition / containerDimensions.w );
           position = overflowArea.x * position;
-          target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
-          target.style[ 'MozTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
-          target.style[ 'msTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+
+            if(has3d()) {
+              target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+              target.style[ 'MozTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+              target.style[ 'msTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+            }else{
+              target.style['webkitTransform'] = 'translate(' + position + 'px, 0px)';
+              target.style['MozTransform'] = 'translate(' + position + 'px, 0px)';
+              target.style['msTransform'] = 'translate(' + position + 'px, 0px)';
+            }
           lastPosition = mouse.xCurr;
         }
       } else if ( horizontalOrientation === false ) {
@@ -343,9 +354,16 @@ var Intense = (function() {
         if( mouse.yCurr !== lastPosition ) {
           var position = parseFloat( currentPosition / containerDimensions.h );
           position = overflowArea.y * position;
-          target.style[ 'webkitTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
-          target.style[ 'MozTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
-          target.style[ 'msTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+
+            if(has3d()) {
+              target.style[ 'webkitTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+              target.style[ 'MozTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+              target.style[ 'msTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+            }else{
+              target.style['webkitTransform'] = 'translate( 0px, ' + position + 'px)';
+              target.style['MozTransform'] = 'translate( 0px, ' + position + 'px)';
+              target.style['msTransform'] = 'translate( 0px, ' + position + 'px)';
+            }
           lastPosition = mouse.yCurr;
         }
       }
@@ -367,5 +385,56 @@ var Intense = (function() {
         start: start,
         stop: stop
     });
+
+    function hasClass(ele,cls) {
+      return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+    }
+
+    function addClass(ele,cls) {
+      if (!hasClass(ele,cls)) ele.className += " "+cls;
+    }
+
+    function removeClass(ele,cls) {
+      if (hasClass(ele,cls)) {
+        var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+        ele.className=ele.className.replace(reg,' ').trim();
+      }
+    }
+
+    function has3d() {
+      if (!window.getComputedStyle) {
+        return false;
+      }
+
+      if(window.has3d !== undefined) return window.has3d;
+
+      var el = document.createElement('p'),
+        has3d,
+        transforms = {
+          'webkitTransform':'-webkit-transform',
+          'OTransform':'-o-transform',
+          'msTransform':'-ms-transform',
+          'MozTransform':'-moz-transform',
+          'transform':'transform'
+        };
+
+      // Add it to the body to get the computed style.
+      document.body.insertBefore(el, null);
+
+      for (var t in transforms) {
+        if (el.style[t] !== undefined) {
+          el.style[t] = "translate3d(1px,1px,1px)";
+          has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+        }
+      }
+
+      document.body.removeChild(el);
+
+      var has3dfinal = (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+
+      window.has3d = has3dfinal;
+      
+      return has3dfinal;
+   }
 
 })();
