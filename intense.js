@@ -44,6 +44,9 @@ var Intense = (function() {
 
     // Overflow variable before screen is locked.
     var overflowValue;
+    
+    // Define if the Intense is active (a image have been clicked) and defuse other click
+    var active = false;
 
     /* -------------------------
     /*          UTILS
@@ -111,7 +114,10 @@ var Intense = (function() {
       // Element needs a src at minumun.
       if( element.getAttribute( 'data-image') || element.src ) {
         element.addEventListener( 'click', function() {
-          init( this );
+          if(!active) {
+            active = true;
+            init( this );
+          }
         }, false );
       }
     }
@@ -243,6 +249,7 @@ var Intense = (function() {
       unbindEvents();
       stop();
       document.body.removeChild( container );
+      active = false;
     }
 
     function setDimensions() {
