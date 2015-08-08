@@ -177,6 +177,7 @@ var Intense = (function() {
         'webkitTransition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
         'MozTransition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
         'transition': 'opacity 150ms cubic-bezier( 0, 0, .26, 1 )',
+        'webkitBackfaceVisibility': 'hidden',
         'opacity': '0'
       }
       container = document.createElement( 'figure' );
@@ -355,9 +356,9 @@ var Intense = (function() {
         if( mouse.xCurr !== lastPosition ) {
           var position = parseFloat( currentPosition / containerDimensions.w );
           position = overflowArea.x * position;
-          target.style[ 'webkitTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
-          target.style[ 'MozTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
-          target.style[ 'msTransform' ] = 'translate3d(' + position + 'px, 0px, 0px)';
+          target.style[ 'webkitTransform' ] = 'translate(' + position + 'px, 0px)';
+          target.style[ 'MozTransform' ] = 'translate(' + position + 'px, 0px)';
+          target.style[ 'msTransform' ] = 'translate(' + position + 'px, 0px)';
           lastPosition = mouse.xCurr;
         }
       } else if ( horizontalOrientation === false ) {
@@ -367,9 +368,9 @@ var Intense = (function() {
         if( mouse.yCurr !== lastPosition ) {
           var position = parseFloat( currentPosition / containerDimensions.h );
           position = overflowArea.y * position;
-          target.style[ 'webkitTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
-          target.style[ 'MozTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
-          target.style[ 'msTransform' ] = 'translate3d( 0px, ' + position + 'px, 0px)';
+          target.style[ 'webkitTransform' ] = 'translate( 0px, ' + position + 'px)';
+          target.style[ 'MozTransform' ] = 'translate( 0px, ' + position + 'px)';
+          target.style[ 'msTransform' ] = 'translate( 0px, ' + position + 'px)';
           lastPosition = mouse.yCurr;
         }
       }
@@ -378,7 +379,6 @@ var Intense = (function() {
     function main( element ) {
 
       // Parse arguments
-
       if ( !element ) {
         throw 'You need to pass an element!';
       }
@@ -391,5 +391,4 @@ var Intense = (function() {
         start: start,
         stop: stop
     });
-
 })();
