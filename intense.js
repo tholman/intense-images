@@ -45,6 +45,8 @@ var Intense = (function() {
     // Overflow variable before screen is locked.
     var overflowValue;
 
+    var active = false;
+
     /* -------------------------
     /*          UTILS
     /* -------------------------*/
@@ -111,7 +113,8 @@ var Intense = (function() {
       // Element needs a src at minumun.
       if( element.getAttribute( 'data-image') || element.src ) {
         element.addEventListener( 'click', function() {
-          init( this );
+          if(!active)
+            init( this );
         }, false );
       }
     }
@@ -141,6 +144,21 @@ var Intense = (function() {
       document.body.style.overflow = overflowValue;
     }
 
+    function setState (element, newClassName) {
+      if (element) {
+        element.classList.remove("loading");
+        element.classList.remove("viewing");
+        element.className += " " + newClassName;
+      } else {
+        // Remove element with class .view
+        var elems = document.querySelectorAll(".viewing");
+
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("viewing");
+        });        
+      }
+    }
+    
     function createViewer( title, caption ) {
 
       /*
@@ -243,6 +261,8 @@ var Intense = (function() {
       unbindEvents();
       stop();
       document.body.removeChild( container );
+      active = false;
+      setState(false);
     }
 
     function setDimensions() {
@@ -261,6 +281,8 @@ var Intense = (function() {
 
     function init( element ) {
 
+      setState(element, 'loading');
+
       var imageSource = element.getAttribute( 'data-image') || element.src;
       var title = element.getAttribute( 'data-title');
       var caption = element.getAttribute( 'data-caption');
@@ -274,6 +296,8 @@ var Intense = (function() {
         lockBody();
         bindEvents();
         loop();
+
+        setState(element, 'viewing');
       }
 
       img.src = imageSource;
