@@ -27,13 +27,22 @@ var Intense = (function() {
     // Destination coordinates are non-eased actual mouse coordinates
     var mouse = { xCurr:0, yCurr:0, xDest: 0, yDest: 0 };
 
+    //@senntyou Whether silde both horizontal and vertical or not
+    var slideBothDirections = false;
+
     var horizontalOrientation = true;
 
     // Holds the animation frame id.
     var looper;
 
     // Current position of scrolly element
-    var lastPosition, currentPosition = 0;
+    //var lastPosition, currentPosition = 0;
+
+    //@senntyou
+    var lastPositionX,
+        lastPositionY,
+        currentPositionX = 0,
+        currentPositionY = 0;
 
     var sourceDimensions, target;
     var targetDimensions = { w: 0, h: 0 };
@@ -73,17 +82,19 @@ var Intense = (function() {
 
     // Returns whether target a vertical or horizontal fit in the page.
     // As well as the right fitting width/height of the image.
-    function getFit(
-
-      source ) {
+    function getFit( source ) {
 
       var heightRatio = window.innerHeight / source.h;
+      var widthRatio = window.innerWidth / source.w;
 
-      if( (source.w * heightRatio) > window.innerWidth ) {
-        return { w: source.w * heightRatio, h: source.h * heightRatio, fit: true };
+      //@senntyou Added a condition of the first
+      if (heightRatio <= 1 && widthRatio <= 1) {
+        return { w: source.w, h: source.h, fit: false, both : true};
+      }
+      else if( (source.w * heightRatio) > window.innerWidth ) {
+        return { w: source.w * heightRatio, h: source.h * heightRatio, fit: true,  both : false};
       } else {
-        var widthRatio = window.innerWidth / source.w;
-        return { w: source.w * widthRatio, h: source.h * widthRatio, fit: false };
+        return { w: source.w * widthRatio, h: source.h * widthRatio, fit: false,  both : false };
       }
     }
 
@@ -276,6 +287,8 @@ var Intense = (function() {
       var imageDimensions = getFit( sourceDimensions );
       target.width = imageDimensions.w;
       target.height = imageDimensions.h;
+      //@senntyou
+      slideBothDirections = imageDimensions.both;
       horizontalOrientation = imageDimensions.fit;
 
       targetDimensions = { w: target.width, h: target.height };
@@ -352,29 +365,47 @@ var Intense = (function() {
       mouse.xCurr += ( mouse.xDest - mouse.xCurr ) * 0.05;
       mouse.yCurr += ( mouse.yDest - mouse.yCurr ) * 0.05;
 
-      if ( horizontalOrientation === true ) {
+      //@senntyou Added a condition of the first
+      if ( slideBothDirections === true ) {
+        
+        // Both Directions SCANNING
+        currentPositionX += ( mouse.xCurr - currentPositionX );
+        currentPositionY += ( mouse.yCurr - currentPositionY );
+        if( mouse.xCurr !== lastPositionX || mouse.yCurr !== lastPositionY ) {
+          var positionX = parseFloat( currentPositionX / containerDimensions.w ),
+              positionY = parseFloat( currentPositionY / containerDimensions.h );
+          positionX = overflowArea.x * positionX;
+          positionY = overflowArea.y * positionY;
+          target.style[ 'webkitTransform' ] = 'translate(' + positionX + 'px, ' + positionY + 'px)';
+          target.style[ 'MozTransform' ] = 'translate(' + positionX + 'px, ' + positionY + 'px)';
+          target.style[ 'msTransform' ] = 'translate(' + positionX + 'px, ' + positionY + 'px)';
+          lastPositionX = mouse.xCurr;
+          lastPositionY = mouse.yCurr;
+        }
+      }
+      else if ( horizontalOrientation === true ) {
 
         // HORIZONTAL SCANNING
-        currentPosition += ( mouse.xCurr - currentPosition );
-        if( mouse.xCurr !== lastPosition ) {
-          var position = parseFloat( currentPosition / containerDimensions.w );
+        currentPositionX += ( mouse.xCurr - currentPositionX );
+        if( mouse.xCurr !== lastPositionX ) {
+          var position = parseFloat( currentPositionX / containerDimensions.w );
           position = overflowArea.x * position;
           target.style[ 'webkitTransform' ] = 'translate(' + position + 'px, 0px)';
           target.style[ 'MozTransform' ] = 'translate(' + position + 'px, 0px)';
           target.style[ 'msTransform' ] = 'translate(' + position + 'px, 0px)';
-          lastPosition = mouse.xCurr;
+          lastPositionX = mouse.xCurr;
         }
       } else if ( horizontalOrientation === false ) {
 
         // VERTICAL SCANNING
-        currentPosition += ( mouse.yCurr - currentPosition );
-        if( mouse.yCurr !== lastPosition ) {
-          var position = parseFloat( currentPosition / containerDimensions.h );
+        currentPositionY += ( mouse.yCurr - currentPositionY );
+        if( mouse.yCurr !== lastPositionY ) {
+          var position = parseFloat( currentPositionY / containerDimensions.h );
           position = overflowArea.y * position;
           target.style[ 'webkitTransform' ] = 'translate( 0px, ' + position + 'px)';
           target.style[ 'MozTransform' ] = 'translate( 0px, ' + position + 'px)';
           target.style[ 'msTransform' ] = 'translate( 0px, ' + position + 'px)';
-          lastPosition = mouse.yCurr;
+          lastPositionY = mouse.yCurr;
         }
       }
     }
