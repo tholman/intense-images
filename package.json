@@ -1,0 +1,35 @@
+{
+  "name": "intense-images",
+  "version": "0.1.0",
+  "description": "A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning.",
+  "main": "src/intense.js",
+  "directories": {
+    "doc": "docs",
+    "demo": "demo"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tholman/intense-images.git"
+  },
+  "keywords": [
+    "image",
+    "slider",
+    "high",
+    "resolution",
+    "images"
+  ],
+  "author": "Tim Holman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tholman/intense-images/issues"
+  },
+  "homepage": "https://github.com/tholman/intense-images#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.2"
+  }
+}

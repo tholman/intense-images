@@ -1,0 +1,25 @@
+{
+  "name": "intense-images",
+  "description": "A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning.",
+  "main": "dist/intense.min.js",
+  "authors": [
+    "Tim Holman"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "image",
+    "slider",
+    "high",
+    "resolution",
+    "images"
+  ],
+  "homepage": "https://github.com/tholman/intense-images",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

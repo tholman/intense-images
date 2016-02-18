@@ -1,0 +1,7 @@
+# Folders
+.idea/
+node_modules/
+bower_components/
+
+# Files
+.DS_Store
