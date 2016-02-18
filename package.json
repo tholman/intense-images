@@ -4,7 +4,8 @@
   "description": "A stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning.",
   "main": "src/intense.js",
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
+    "demo": "demo"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
