@@ -25,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/tholman/intense-images/issues"
   },
-  "homepage": "https://github.com/tholman/intense-images#readme"
+  "homepage": "https://github.com/tholman/intense-images#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.2"
+  }
 }
