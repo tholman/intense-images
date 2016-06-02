@@ -1,0 +1,98 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/5.0.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'publish',
+1 verbose cli   './' ]
+2 info using npm@3.3.9
+3 info using node@v5.0.0
+4 verbose publish [ './' ]
+5 silly cache add args [ './', null ]
+6 verbose cache add spec ./
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: './',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: './',
+7 silly cache add   spec: '/Users/tim/Tims/intense-images',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/tim/.npm/intense-images/1.0.0/package.tgz not in flight; packing
+9 info lifecycle intense-images@1.0.0~prepublish: intense-images@1.0.0
+10 silly lifecycle intense-images@1.0.0~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ '/Users/tim/.npm/intense-images/1.0.0/package.tgz',
+11 verbose tar pack   '/Users/tim/Tims/intense-images' ]
+12 verbose tarball /Users/tim/.npm/intense-images/1.0.0/package.tgz
+13 verbose folder /Users/tim/Tims/intense-images
+14 verbose addLocalTarball adding from inside cache /Users/tim/.npm/intense-images/1.0.0/package.tgz
+15 silly cache afterAdd intense-images@1.0.0
+16 verbose afterAdd /Users/tim/.npm/intense-images/1.0.0/package/package.json not in flight; writing
+17 verbose afterAdd /Users/tim/.npm/intense-images/1.0.0/package/package.json written
+18 silly publish { name: 'intense-images',
+18 silly publish   version: '1.0.0',
+18 silly publish   description: 'A simple library to view large images up close using simple mouse interaction, and the full screen.',
+18 silly publish   main: 'intense.js',
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'git+https://github.com/tholman/intense-images.git' },
+18 silly publish   keywords: [ 'web', 'front-end', 'images' ],
+18 silly publish   author: { name: 'Tim Holman', email: 'timothy.w.holman@gmail.com' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/tholman/intense-images/issues' },
+18 silly publish   homepage: 'https://github.com/tholman/intense-images#readme',
+18 silly publish   readme: '# Intense Images\n\nA stand alone javascript library for viewing images on the full, full screen. Using the touch/mouse position for panning. [Here\'s a demo](http://tholman.com/intense-images)! You can also play with the code [live on CodePen](http://codepen.io/tholman/pen/mlDiK).\n\n### Instructions\n\nIntense images is a stand alone library (no jquery, or the likes) so usage is pretty straight forward. All styling of image elements is up to the user, ```Intense.js``` only handles the creation, styling and management of the image viewer and captions.\n\n#### HTML\n\nThere aren\'t many restrictions for the `html` elements you want to use to activate the Intense image viewer, the one mandatory attribute is either a `src`, `data-image` or a `href`, which needs to point to an image file. You can use `data-image` if you want to load in a different version of the image to the original source (higher resolution, for example).\n\n```html\n<img src="./img/awesome-source.jpg" />\n\n<!-- OR -->\n\n<div class="anything" data-image="./img/awesome-source.jpg" />\n```\n\nYou can also pass through titles, and subcaptions, which will appear at the bottom right of the viewer. To do this, you use the `data-title` and `data-caption` attributes.\n\n```html\n<img src="./img/awesome-source.jpg" data-title="My beach adventure" data-caption="Thanks Sam, for the great picture"/>\n```\n\n#### JS\n\nIntense.js is fairly robust when it comes to assigning elements to be used, its as simple as passing them to the ```Intense``` function, once they have been rendered. You can do this with `document.querySelector` finding your elements however you like.\n\n```html\n<img src="./img/awesome-source.jpg" />\n\n<script>\nwindow.onload = function() {\n\t// Intensify all images on the page.\n    var element = document.querySelector( \'img\' );\n\tIntense( element );\n}\n</script>\n```\n\nOr doing multiple at once, with a classname.\n\n```html\n<img src="./img/awesome-source.jpg" class="intense" />\n<img src="./img/awesome-source.jpg" class="intense" />\n\n<script>\nwindow.onload = function() {\n\t// Intensify all images with the \'intense\' classname.\n    var elements = document.querySelectorAll( \'.intense\' );\n\tIntense( elements );\n}\n</script>\n```\n\n#### CSS\nThere aren\'t any css restrictions. Although you\'ll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.\n\nIf you wish to use the `+` cursor, you can find the image in the demo folder, here\'s the css snippet.\n\n```css\n.your-image-class {\n\tcursor: url(\'./you-image-directory/plus_cursor.png\') 25 25, auto;\n}\n```\n\n#### Image/Example\n\nHere\'s a quick screenshot of Intense.js in action. You should really look at the [demo](http://tholman.com/intense-images) though, to get a full feel for the interactions.\n\n![Intense.js in action](http://i.imgur.com/C98D6tw.png "Image Viewer")\n\n###Browser support\n\nIntense has been tested in the latest stable builds of Safari, Chrome and Firefox. It "should work" in Internet Explorer 9 and up as well.\n\n### License\n\nThe MIT License (MIT)\n\nCopyright (C) 2014 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com\n',
+18 silly publish   readmeFilename: 'readme.md',
+18 silly publish   gitHead: '2e601d01983583eaf08877205c3e6e30ac089972',
+18 silly publish   _id: 'intense-images@1.0.0',
+18 silly publish   scripts: {},
+18 silly publish   _shasum: '431cd13f68f8d971b47ff5aa314bdd33e3704f07',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name intense-images
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/intense-images
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /Users/tim/.npm/intense-images/1.0.0/package.tgz
+26 verbose request uri https://registry.npmjs.org/intense-images
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 10:51:55 PM
+29 verbose request using bearer token for auth
+30 verbose request id 615f87f5c2705431
+31 http request PUT https://registry.npmjs.org/intense-images
+32 http 403 https://registry.npmjs.org/intense-images
+33 verbose headers { 'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=300',
+33 verbose headers   'content-length': '108',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Thu, 02 Jun 2016 02:51:59 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-atl6220-ATL',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1464835915.384632,VS0,VE4483',
+33 verbose headers   vary: 'Accept-Encoding' }
+34 verbose request invalidating /Users/tim/.npm/registry.npmjs.org/intense-images on PUT
+35 error publish Failed PUT 403
+36 verbose stack Error: you do not have permission to publish "intense-images". Are you logged in as the correct user? : intense-images
+36 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+36 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+36 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+36 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+36 verbose stack     at emitTwo (events.js:87:13)
+36 verbose stack     at Request.emit (events.js:172:7)
+36 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1082:10)
+36 verbose stack     at emitOne (events.js:82:20)
+36 verbose stack     at Request.emit (events.js:169:7)
+36 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+37 verbose statusCode 403
+38 verbose pkgid intense-images
+39 verbose cwd /Users/tim/Tims/intense-images
+40 error Darwin 15.0.0
+41 error argv "/usr/local/Cellar/node/5.0.0/bin/node" "/usr/local/bin/npm" "publish" "./"
+42 error node v5.0.0
+43 error npm  v3.3.9
+44 error code E403
+45 error you do not have permission to publish "intense-images". Are you logged in as the correct user? : intense-images
+46 error If you need help, you may report this error at:
+46 error     <https://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]

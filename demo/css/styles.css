@@ -55,7 +55,9 @@ header h1, footer h1 {
   margin-top: 20px; }
 
 .demo-image {
-  cursor: url("../img/plus_cursor.png") 25 25, pointer;
+  cursor: url("../img/plus_cursor.png") 50 50, pointer;
+  cursor: -webkit-image-set(
+  url('../img/plus_cursor.png') 2x), auto;
   display: inline-block;
   width: 290px;
   height: 290px;
