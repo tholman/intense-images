@@ -80,4 +80,4 @@ Intense has been tested in the latest stable builds of Safari, Chrome and Firefo
 
 The MIT License (MIT)
 
-Copyright (C) 2014 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com
+Copyright (C) 2016 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com
