@@ -395,3 +395,7 @@ var Intense = (function() {
         stop: stop
     });
 })();
+
+if (typeof module !== 'undefined' && module.exports){
+  module.exports = Intense;
+}
