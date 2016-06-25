@@ -1,6 +1,6 @@
 {
   "name": "@tholman/intense-images",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple library to view large images up close using simple mouse interaction, and the full screen.",
   "main": "intense.js",
   "repository": {
