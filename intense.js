@@ -28,6 +28,7 @@ var Intense = (function() {
     var mouse = { xCurr:0, yCurr:0, xDest: 0, yDest: 0 };
 
     var horizontalOrientation = true;
+    var invertInteractionDirection = false;
 
     // Holds the animation frame id.
     var looper;
@@ -357,7 +358,7 @@ var Intense = (function() {
         // HORIZONTAL SCANNING
         currentPosition += ( mouse.xCurr - currentPosition );
         if( mouse.xCurr !== lastPosition ) {
-          var position = parseFloat( currentPosition / containerDimensions.w );
+          var position = parseFloat( calcPosition(currentPosition, containerDimensions.w) );
           position = overflowArea.x * position;
           target.style[ 'webkitTransform' ] = 'translate(' + position + 'px, 0px)';
           target.style[ 'MozTransform' ] = 'translate(' + position + 'px, 0px)';
@@ -369,7 +370,7 @@ var Intense = (function() {
         // VERTICAL SCANNING
         currentPosition += ( mouse.yCurr - currentPosition );
         if( mouse.yCurr !== lastPosition ) {
-          var position = parseFloat( currentPosition / containerDimensions.h );
+          var position = parseFloat( calcPosition(currentPosition, containerDimensions.h) );
           position = overflowArea.y * position;
           target.style[ 'webkitTransform' ] = 'translate( 0px, ' + position + 'px)';
           target.style[ 'MozTransform' ] = 'translate( 0px, ' + position + 'px)';
@@ -377,6 +378,15 @@ var Intense = (function() {
           lastPosition = mouse.yCurr;
         }
       }
+
+      function calcPosition(current, total){
+        return invertInteractionDirection ? (total - current) / total : current / total;
+      }
+
+    }
+
+    function config(options){
+      if ('invertInteractionDirection' in options) invertInteractionDirection = options.invertInteractionDirection;
     }
 
     function main( element ) {
@@ -392,7 +402,8 @@ var Intense = (function() {
     return extend( main, {
         resize: setDimensions,
         start: start,
-        stop: stop
+        stop: stop,
+        config: config
     });
 })();
 
