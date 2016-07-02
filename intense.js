@@ -47,6 +47,11 @@ var Intense = (function() {
 
     var active = false;
 
+    var loader = {
+      start: function(){},
+      stop: function(){}
+    };
+
     /* -------------------------
     /*          UTILS
     /* -------------------------*/
@@ -299,7 +304,11 @@ var Intense = (function() {
         loop();
 
         setState(element, 'viewing');
+
+        loader.stop();
       }
+
+      loader.start();
 
       img.src = imageSource;
     }
@@ -383,6 +392,22 @@ var Intense = (function() {
 
     function config(options){
       if ('invertInteractionDirection' in options) invertInteractionDirection = options.invertInteractionDirection;
+
+      if ('loader' in options){
+        if (invalidProperties()){
+          throw 'You need to pass callback functions under "start" and "stop" properties!';
+        }
+
+        loader = options.loader;
+      }
+
+      function invalidProperties(){
+        if (options.loader.start && typeof(options.loader.start) === 'function'
+          && options.loader.stop && typeof(options.loader.stop) === 'function') return false;
+
+        return true;
+      }
+
     }
 
     function main( element, configOptions ) {
