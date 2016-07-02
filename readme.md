@@ -53,6 +53,7 @@ window.onload = function() {
 	Intense( elements );
 }
 </script>
+```
 
 If you want, you can invert the direction of the interactions
 
