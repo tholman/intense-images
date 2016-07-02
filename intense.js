@@ -73,9 +73,7 @@ var Intense = (function() {
 
     // Returns whether target a vertical or horizontal fit in the page.
     // As well as the right fitting width/height of the image.
-    function getFit(
-
-      source ) {
+    function getFit( source ) {
 
       var heightRatio = window.innerHeight / source.h;
 
@@ -387,11 +385,16 @@ var Intense = (function() {
       if ('invertInteractionDirection' in options) invertInteractionDirection = options.invertInteractionDirection;
     }
 
-    function main( element ) {
+    function main( element, configOptions ) {
 
       // Parse arguments
       if ( !element ) {
         throw 'You need to pass an element!';
+      }
+
+      // If they have a config, use it!
+      if( configOptions ) {
+        config(configOptions);
       }
 
       startTracking( element );
