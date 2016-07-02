@@ -53,6 +53,20 @@ window.onload = function() {
 	Intense( elements );
 }
 </script>
+
+If you want, you can invert the direction of the interactions
+
+```html
+<img src="./img/awesome-source.jpg" class="intense" />
+<img src="./img/awesome-source.jpg" class="intense" />
+
+<script>
+window.onload = function() {
+	// Intensify all images with the 'intense' classname.
+	var elements = document.querySelectorAll( '.intense' );
+	Intense( elements, {invertInteractionDirection: true});
+}
+</script>
 ```
 
 #### CSS
