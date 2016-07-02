@@ -148,15 +148,15 @@ var Intense = (function() {
 
     function setState (element, newClassName) {
       if (element) {
-        element.classList.remove("loading");
-        element.classList.remove("viewing");
+        element.classList.remove("intense--loading");
+        element.classList.remove("intense--viewing");
         element.className += " " + newClassName;
       } else {
         // Remove element with class .view
-        var elems = document.querySelectorAll(".viewing");
+        var elems = document.querySelectorAll(".intense--viewing");
 
         [].forEach.call(elems, function(el) {
-            el.classList.remove("viewing");
+            el.classList.remove("intense--viewing");
         });        
       }
     }
@@ -283,7 +283,7 @@ var Intense = (function() {
 
     function init( element ) {
 
-      setState(element, 'loading');
+      setState(element, 'intense--loading');
       var imageSource = element.getAttribute( 'data-image') || element.src || element.href;
       var title = element.getAttribute( 'data-title') || element.title;
       var caption = element.getAttribute( 'data-caption');
@@ -298,7 +298,7 @@ var Intense = (function() {
         bindEvents();
         loop();
 
-        setState(element, 'viewing');
+        setState(element, 'intense--viewing');
       }
 
       img.src = imageSource;
