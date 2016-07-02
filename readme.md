@@ -55,6 +55,21 @@ window.onload = function() {
 </script>
 ```
 
+If you want, you can invert the direction of the interactions
+
+```html
+<img src="./img/awesome-source.jpg" class="intense" />
+<img src="./img/awesome-source.jpg" class="intense" />
+
+<script>
+window.onload = function() {
+	// Intensify all images with the 'intense' classname.
+	var elements = document.querySelectorAll( '.intense' );
+	Intense( elements, {invertInteractionDirection: true});
+}
+</script>
+```
+
 #### CSS
 There aren't any css restrictions. Although you'll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.
 
