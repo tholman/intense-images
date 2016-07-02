@@ -16,7 +16,6 @@ window.cancelRequestAnimFrame = ( function() {
         clearTimeout
 } )();
 
-
 var Intense = (function() {
 
     'use strict';
@@ -282,7 +281,6 @@ var Intense = (function() {
       targetDimensions = { w: target.width, h: target.height };
       containerDimensions = { w: window.innerWidth, h: window.innerHeight };
       overflowArea = {x: containerDimensions.w - targetDimensions.w, y: containerDimensions.h - targetDimensions.h};
-
     }
 
     function init( element ) {
