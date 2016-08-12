@@ -146,7 +146,9 @@ var Intense = (function() {
       document.body.style.overflow = overflowValue;
     }
 
-    Object.defineProperty(Element.prototype, 'classList', {
+    function setState (element, newClassName) {
+      
+      Object.defineProperty(Element.prototype, 'classList', {
         get: function() {
             var self = this,
                 bValue = self.className.split(" ")
@@ -191,8 +193,7 @@ var Intense = (function() {
         },
         enumerable: false
     })
-
-    function setState (element, newClassName) {
+    
       if (element) {
         element.classList.remove("loading");
         element.classList.remove("viewing");
