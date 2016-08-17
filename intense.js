@@ -191,7 +191,8 @@ var Intense = (function() {
 
             return bValue;
         },
-        enumerable: false
+          configurable: true,
+          enumerable: true
     })
     
       if (element) {
