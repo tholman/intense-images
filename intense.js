@@ -202,7 +202,9 @@ var Intense = (function() {
         'color': '#fff',
         'wordSpacing': '0.2px',
         'webkitFontSmoothing': 'antialiased',
-        'textShadow': '-1px 0px 1px rgba(0,0,0,0.4)'
+        'textShadow': '-1px 0px 1px rgba(0,0,0,0.4)',
+        'background-color': 'rgba(0,0,0,0.5)',
+        'width': '100%'
       };
       var captionContainer = document.createElement( 'figcaption' );
       applyProperties( captionContainer, captionContainerProperties );
@@ -233,7 +235,6 @@ var Intense = (function() {
           'fontWeight': 'normal',
           'fontSize': '20px',
           'letterSpacing': '0.1px',
-          'maxWidth': '500px',
           'textAlign': 'left',
           'background': 'none',
           'marginTop': '5px'
