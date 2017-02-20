@@ -62,7 +62,6 @@ var Intense = (function() {
 
     var active = false;
 
-
     /* -------------------------
     /*          UTILS
     /* -------------------------*/
@@ -265,6 +264,7 @@ var Intense = (function() {
         // console.log(nextElement);
 
         if (nextElement) {
+            document.body.className += "gallery-switch";
             removeViewer();
             init(nextElement);
         } else {
@@ -282,6 +282,7 @@ var Intense = (function() {
         // console.log(prevElement);
 
         if (prevElement) {
+            document.body.className += "gallery-switch";
             removeViewer();
             init(prevElement);
         } else {
@@ -373,6 +374,11 @@ var Intense = (function() {
             loop();
             setState(element, 'intense--viewing');
             if (gallery) {
+
+              setTimeout(function(){
+                document.body.className = document.body.className.replace(/\bgallery-switch\b/,'');
+              }, 50);
+
                 checkForNext();
                 checkForPrev();
             }
