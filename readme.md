@@ -93,12 +93,6 @@ window.onload = function() {
 #### CSS
 There aren't any css restrictions. Although you'll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.
 
-The CSS is located in the file intense.css so you need to add it to your html:
-
-```html
-<link href='intense.css' rel='stylesheet'>
-```
-
 If you wish to use the `+` cursor, you can find the image in the demo folder, here's the css snippet.
 
 ```css
