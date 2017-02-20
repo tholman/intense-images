@@ -29,6 +29,11 @@ You can also pass through titles, and subcaptions, which will appear at the bott
 Intense.js is fairly robust when it comes to assigning elements to be used, its as simple as passing them to the ```Intense``` function, once they have been rendered. You can do this with `document.querySelector` finding your elements however you like.
 
 ```html
+<!--put this in <head> -->
+<link href='intense.css' rel='stylesheet'>
+<script src='intense.js'></script>
+<!--</head> -->
+
 <img src="./img/awesome-source.jpg" />
 
 <script>
@@ -70,8 +75,29 @@ window.onload = function() {
 </script>
 ```
 
+If you want, you can use the Viewer as a Gallery
+
+```html
+<img src="./img/awesome-source.jpg" class="intense" />
+<img src="./img/awesome-source.jpg" class="intense" />
+
+<script>
+window.onload = function() {
+	// Intensify all images with the 'intense' classname.
+	var elements = document.querySelectorAll( '.intense' );
+	Intense( elements, {gallery: true});
+}
+</script>
+```
+
 #### CSS
 There aren't any css restrictions. Although you'll want to avoid tainting the js files css with anything else (editing the base h1 tag, for instance), unless of course, thats what you want to customize.
+
+The CSS is located in the file intense.css so you need to add it to your html:
+
+```html
+<link href='intense.css' rel='stylesheet'>
+```
 
 If you wish to use the `+` cursor, you can find the image in the demo folder, here's the css snippet.
 
