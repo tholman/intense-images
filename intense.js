@@ -281,59 +281,60 @@ var Intense = (function() {
     }
 
     function checkForNext() {
-      var currentElement = document.getElementsByClassName('intense--viewing');
-      var requiredElement = currentElement[0];
-      var nextElement = requiredElement.nextElementSibling;
+        var currentElement = document.getElementsByClassName('intense--viewing');
+        var requiredElement = currentElement[0];
+        var nextElement = requiredElement.nextElementSibling;
 
-      if (!nextElement) {
-        addClass(arrowRight, 'arrow-intense-disabled');
-      } else {
-        removeClass(arrowRight, 'arrow-intense-disabled');
-      }
-  }
+        if (!nextElement) {
+            addClass(arrowRight, 'arrow-intense-disabled');
+        } else {
+            removeClass(arrowRight, 'arrow-intense-disabled');
+        }
+    }
 
-  function checkForPrev() {
-      var currentElement = document.getElementsByClassName('intense--viewing');
-      var requiredElement = currentElement[0];
-      var prevElement = requiredElement.previousElementSibling;
+    function checkForPrev() {
+        var currentElement = document.getElementsByClassName('intense--viewing');
+        var requiredElement = currentElement[0];
+        var prevElement = requiredElement.previousElementSibling;
 
-      if (!prevElement) {
-        addClass(arrowLeft, 'arrow-intense-disabled');
-      } else {
-        removeClass(arrowLeft, 'arrow-intense-disabled');
-      }
-  }
+        if (!prevElement) {
+            addClass(arrowLeft, 'arrow-intense-disabled');
+        } else {
+            removeClass(arrowLeft, 'arrow-intense-disabled');
+        }
+    }
 
-  function useNext(e) {
-      var currentElement = document.getElementsByClassName('intense--viewing');
-      var requiredElement = currentElement[0];
-      var nextElement = requiredElement.nextElementSibling;
+    function useNext(e) {
+        var currentElement = document.getElementsByClassName('intense--viewing');
+        var requiredElement = currentElement[0];
+        var nextElement = requiredElement.nextElementSibling;
 
-      if (nextElement) {
-          addClass(document.body, "gallery-switch");
-          removeViewer();
-          init(nextElement);
-          removeClass(arrowRight, 'arrow-intense-disabled');
-      } else {
-          addClass(arrowRight, 'arrow-intense-disabled');
-      }
-  }
+        if (nextElement) {
+            addClass(document.body, "gallery-switch");
+            removeViewer();
+            init(nextElement);
+            removeClass(arrowRight, 'arrow-intense-disabled');
+        } else {
+            addClass(arrowRight, 'arrow-intense-disabled');
+        }
+    }
 
-  function usePrev(e) {
-      var currentElement = document.getElementsByClassName('intense--viewing');
-      var requiredElement = currentElement[0];
-      var prevElement = requiredElement.previousElementSibling;
+    function usePrev(e) {
+        var currentElement = document.getElementsByClassName('intense--viewing');
+        var requiredElement = currentElement[0];
+        var prevElement = requiredElement.previousElementSibling;
 
-      if (prevElement) {
-          document.body.className += "gallery-switch";
-          removeViewer();
-          init(prevElement);
-          removeClass(arrowLeft, 'arrow-intense-disabled');
-      } else {
-          addClass(arrowLeft, 'arrow-intense-disabled');
-      }
+        if (prevElement) {
+            document.body.className += "gallery-switch";
+            removeViewer();
+            init(prevElement);
+            removeClass(arrowLeft, 'arrow-intense-disabled');
+        } else {
+            addClass(arrowLeft, 'arrow-intense-disabled');
+        }
 
-  }
+    }
+
     function removeViewer() {
         unlockBody();
         unbindEvents();
@@ -398,9 +399,9 @@ var Intense = (function() {
             setState(element, 'intense--viewing');
             if (gallery) {
 
-              setTimeout(function(){
-                removeClass(document.body, 'gallery-switch');
-              }, 50);
+                setTimeout(function() {
+                    removeClass(document.body, 'gallery-switch');
+                }, 50);
 
                 checkForNext();
                 checkForPrev();
