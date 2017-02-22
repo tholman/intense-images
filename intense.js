@@ -66,6 +66,32 @@ var Intense = (function() {
     /*          UTILS
     /* -------------------------*/
 
+    function hasClass(el, className) {
+        if (el.classList) {
+            return el.classList.contains(className);
+        } else {
+            return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+        }
+    }
+
+    function addClass(el, className) {
+        if (el.classList) {
+            el.classList.add(className);
+        } else if (!hasClass(el, className)) {
+            el.className += " " + className;
+        }
+    }
+
+    function removeClass(el, className) {
+        if (el.classList) {
+            el.classList.remove(className);
+        } else if (hasClass(el, className)) {
+            var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+            el.className = el.className.replace(reg, ' ');
+        }
+    }
+
+
     // Soft object augmentation
     function extend(target, source) {
 
@@ -172,9 +198,9 @@ var Intense = (function() {
 
     function setState(element, newClassName) {
         if (element) {
-            element.className = element.className.replace(/\bintense--loading\b/, '');
-            element.className = element.className.replace(/\bintense--viewing\b/, '');
-            element.className += " " + newClassName;
+            removeClass(element, 'intense--loading');
+            removeClass(element, 'intense--viewing');
+            addClass(element, newClassName);
         } else {
             // Remove element with class .view
             var elems = document.querySelectorAll('.intense--viewing');
@@ -260,7 +286,9 @@ var Intense = (function() {
       var nextElement = requiredElement.nextElementSibling;
 
       if (!nextElement) {
-          arrowRight.className = 'arrow-intense-disabled';
+        addClass(arrowRight, 'arrow-intense-disabled');
+      } else {
+        removeClass(arrowRight, 'arrow-intense-disabled');
       }
   }
 
@@ -270,7 +298,9 @@ var Intense = (function() {
       var prevElement = requiredElement.previousElementSibling;
 
       if (!prevElement) {
-          arrowLeft.className = 'arrow-intense-disabled';
+        addClass(arrowLeft, 'arrow-intense-disabled');
+      } else {
+        removeClass(arrowLeft, 'arrow-intense-disabled');
       }
   }
 
@@ -280,12 +310,12 @@ var Intense = (function() {
       var nextElement = requiredElement.nextElementSibling;
 
       if (nextElement) {
-          document.body.className += "gallery-switch";
+          addClass(document.body, "gallery-switch");
           removeViewer();
           init(nextElement);
+          removeClass(arrowRight, 'arrow-intense-disabled');
       } else {
-          arrowRight.className = 'arrow-intense-disabled';
-
+          addClass(arrowRight, 'arrow-intense-disabled');
       }
   }
 
@@ -298,8 +328,9 @@ var Intense = (function() {
           document.body.className += "gallery-switch";
           removeViewer();
           init(prevElement);
+          removeClass(arrowLeft, 'arrow-intense-disabled');
       } else {
-          arrowLeft.className = 'arrow-intense-disabled';
+          addClass(arrowLeft, 'arrow-intense-disabled');
       }
 
   }
@@ -368,7 +399,7 @@ var Intense = (function() {
             if (gallery) {
 
               setTimeout(function(){
-                document.body.className = document.body.className.replace(/\bgallery-switch\b/,'');
+                removeClass(document.body, 'gallery-switch');
               }, 50);
 
                 checkForNext();

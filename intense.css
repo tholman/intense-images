@@ -43,6 +43,10 @@ body.gallery-switch figure.figure-intense {
     cursor: pointer;
 }
 
+.arrow-intense-disabled {
+  display: none;
+}
+
 .arrow-intense-left {
     left: 10px;
     background-image: url("img/arrow_left.png");
