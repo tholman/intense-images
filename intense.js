@@ -61,6 +61,7 @@ var Intense = (function() {
     var overflowValue;
 
     var active = false;
+    var figurePresent;
 
     /* -------------------------
     /*          UTILS
@@ -163,7 +164,7 @@ var Intense = (function() {
                 if (element.tagName === 'A') {
                     e.preventDefault();
                 }
-                if (!active) {
+                if (!active && !figurePresent) {
                     active = true;
                     init(this);
                 }
@@ -341,6 +342,7 @@ var Intense = (function() {
         stop();
         active = false;
         setState(false);
+        figurePresent = false;
 
         var child = document.getElementById("figure-intense");
         var parent = child.parentNode;
@@ -378,6 +380,7 @@ var Intense = (function() {
 
     function init(element) {
 
+        figurePresent = true;
 
         setState(element, 'intense--loading');
         var imageSource = element.getAttribute('data-image') || element.src || element.href;
