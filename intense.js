@@ -172,8 +172,8 @@ var Intense = (function() {
 
     function setState(element, newClassName) {
         if (element) {
-            element.className = element.className.replace('intense--loading', '');
-            element.className = element.className.replace('intense--viewing', '');
+            element.className = element.className.replace(/\bintense--loading\b/, '');
+            element.className = element.className.replace(/\bintense--viewing\b/, '');
             element.className += " " + newClassName;
         } else {
             // Remove element with class .view
@@ -254,43 +254,55 @@ var Intense = (function() {
         }, 10);
     }
 
+    function checkForNext() {
+      var currentElement = document.getElementsByClassName('intense--viewing');
+      var requiredElement = currentElement[0];
+      var nextElement = requiredElement.nextElementSibling;
 
-    function useNext(e) {
-        var currentElement = document.getElementsByClassName('intense--viewing');
-        var requiredElement = currentElement[0];
-        // console.log(requiredElement);
+      if (!nextElement) {
+          arrowRight.className = 'arrow-intense-disabled';
+      }
+  }
 
-        var nextElement = requiredElement.nextElementSibling;
-        // console.log(nextElement);
+  function checkForPrev() {
+      var currentElement = document.getElementsByClassName('intense--viewing');
+      var requiredElement = currentElement[0];
+      var prevElement = requiredElement.previousElementSibling;
 
-        if (nextElement) {
-            document.body.className += "gallery-switch";
-            removeViewer();
-            init(nextElement);
-        } else {
-            arrowRight.className = 'arrow-intense-disabled';
+      if (!prevElement) {
+          arrowLeft.className = 'arrow-intense-disabled';
+      }
+  }
 
-        }
-    }
+  function useNext(e) {
+      var currentElement = document.getElementsByClassName('intense--viewing');
+      var requiredElement = currentElement[0];
+      var nextElement = requiredElement.nextElementSibling;
 
-    function usePrev(e) {
-        var currentElement = document.getElementsByClassName('intense--viewing');
-        var requiredElement = currentElement[0];
-        // console.log(requiredElement);
+      if (nextElement) {
+          document.body.className += "gallery-switch";
+          removeViewer();
+          init(nextElement);
+      } else {
+          arrowRight.className = 'arrow-intense-disabled';
 
-        var prevElement = requiredElement.previousElementSibling;
-        // console.log(prevElement);
+      }
+  }
 
-        if (prevElement) {
-            document.body.className += "gallery-switch";
-            removeViewer();
-            init(prevElement);
-        } else {
-            arrowLeft.className = 'arrow-intense-disabled';
-        }
+  function usePrev(e) {
+      var currentElement = document.getElementsByClassName('intense--viewing');
+      var requiredElement = currentElement[0];
+      var prevElement = requiredElement.previousElementSibling;
 
-    }
+      if (prevElement) {
+          document.body.className += "gallery-switch";
+          removeViewer();
+          init(prevElement);
+      } else {
+          arrowLeft.className = 'arrow-intense-disabled';
+      }
 
+  }
     function removeViewer() {
         unlockBody();
         unbindEvents();
@@ -331,26 +343,6 @@ var Intense = (function() {
         };
     }
 
-
-    function checkForNext() {
-        var currentElement = document.getElementsByClassName('intense--viewing');
-        var requiredElement = currentElement[0];
-        var nextElement = requiredElement.nextElementSibling;
-
-        if (!nextElement) {
-            arrowRight.className = 'arrow-intense-disabled';
-        }
-    }
-
-    function checkForPrev() {
-        var currentElement = document.getElementsByClassName('intense--viewing');
-        var requiredElement = currentElement[0];
-        var prevElement = requiredElement.previousElementSibling;
-
-        if (!prevElement) {
-            arrowLeft.className = 'arrow-intense-disabled';
-        }
-    }
 
     function init(element) {
 
