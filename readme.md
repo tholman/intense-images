@@ -87,7 +87,7 @@ Here's a quick screenshot of Intense.js in action. You should really look at the
 
 ![Intense.js in action](http://i.imgur.com/C98D6tw.png "Image Viewer")
 
-###Browser support
+### Browser support
 
 Intense has been tested in the latest stable builds of Safari, Chrome and Firefox. It "should work" in Internet Explorer 9 and up as well.
 
