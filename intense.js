@@ -52,8 +52,8 @@ var Intense = (function() {
   var active = false;
 
   /* -------------------------
-    /*          UTILS
-    /* -------------------------*/
+  /*          UTILS
+  /* -------------------------*/
 
   // Soft object augmentation
   function extend(target, source) {
@@ -87,8 +87,8 @@ var Intense = (function() {
   }
 
   /* -------------------------
-    /*          APP
-    /* -------------------------*/
+  /*          APP
+  /* -------------------------*/
 
   function startTracking(passedElements) {
     var i;

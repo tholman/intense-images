@@ -9,7 +9,7 @@
  *
  *********************************************/
 
- $black: #222;
+$black: #222;
 
 * {
 	-webkit-font-smoothing: antialiased;
@@ -17,10 +17,11 @@
 	box-sizing: border-box;
 }
 
-html, body {
-	font-family: 'Ubuntu Mono', monospace ;
+html,
+body {
+	font-family: "Ubuntu Mono", monospace;
 	margin: 0px;
-  	height: 100%;
+	height: 100%;
 	width: 100%;
 }
 
@@ -46,7 +47,8 @@ body {
 	margin-top: 20px;
 }
 
-header, footer {
+header,
+footer {
 	h1 {
 		font-weight: normal;
 		width: 604px;
@@ -67,7 +69,7 @@ header, footer {
 }
 
 .demo-image {
-	cursor: url('../img/plus_cursor.png') 50 50, pointer;
+	cursor: url("../img/plus_cursor.png") 50 50, pointer;
 	display: inline-block;
 	width: 290px;
 	height: 290px;
@@ -78,16 +80,16 @@ header, footer {
 	margin-bottom: 16px;
 
 	&.first {
-		background-image: url( '../img/h1_small.jpg' );
+		background-image: url("../img/h1_small.jpg");
 	}
 
 	&.second {
 		background-position: 50% 10%;
-		background-image: url( '../img/v1_small.jpg' );
+		background-image: url("../img/v1_small.jpg");
 	}
 
 	&.third {
-		background-image: url( '../img/h2_small.jpg' );
+		background-image: url("../img/h2_small.jpg");
 	}
 }
 
@@ -115,4 +117,32 @@ iframe {
 	top: 0;
 	right: 0;
 	border: 0;
+}
+
+.github-corner:hover .octo-arm {
+	animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+	0%,
+	100% {
+		transform: rotate(0);
+	}
+	20%,
+	60% {
+		transform: rotate(-25deg);
+	}
+	40%,
+	80% {
+		transform: rotate(10deg);
+	}
+}
+
+@media (max-width: 500px) {
+	.github-corner:hover .octo-arm {
+		animation: none;
+	}
+	.github-corner .octo-arm {
+		animation: octocat-wave 560ms ease-in-out;
+	}
 }
