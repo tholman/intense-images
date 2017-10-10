@@ -35,6 +35,9 @@ var Intense = (function() {
   // Holds the animation frame id.
   var looper;
 
+  // Single image
+  var image;
+
   // Current position of scrolly element
   var lastPosition,
     currentPosition = 0;
@@ -288,9 +291,14 @@ var Intense = (function() {
     var title = element.getAttribute("data-title") || element.title;
     var caption = element.getAttribute("data-caption");
 
-    var img = new Image();
-    img.onload = function() {
-      sourceDimensions = { w: img.width, h: img.height }; // Save original dimensions for later.
+    // Clear old onload message
+    if (image) {
+      image.onload = null;
+    }
+
+    image = new Image();
+    image.onload = function() {
+      sourceDimensions = { w: image.width, h: image.height }; // Save original dimensions for later.
       target = this;
       createViewer(title, caption);
       lockBody();
@@ -300,7 +308,7 @@ var Intense = (function() {
       setState(element, "intense--viewing");
     };
 
-    img.src = imageSource;
+    image.src = imageSource;
   }
 
   function bindEvents() {
