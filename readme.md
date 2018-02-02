@@ -91,6 +91,10 @@ Here's a quick screenshot of Intense.js in action. You should really look at the
 
 Intense has been tested in the latest stable builds of Safari, Chrome and Firefox. It "should work" in Internet Explorer 9 and up as well.
 
+### Other frameworks
+
+If you're using React, check out [react-intense](https://github.com/brycedorn/react-intense)!
+
 ### License
 
 The MIT License (MIT)
