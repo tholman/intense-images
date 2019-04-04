@@ -51,7 +51,9 @@ var Intense = (function() {
 
   // Overflow variable before screen is locked.
   var overflowValue;
-
+  
+  // if the image size is smaller than the browser window size.
+  var noScroll = false;
   var active = false;
 
   /* -------------------------
@@ -266,6 +268,7 @@ var Intense = (function() {
     stop();
     document.body.removeChild(container);
     active = false;
+    noScroll = false;
     setState(false);
   }
 
@@ -275,6 +278,13 @@ var Intense = (function() {
     target.width = imageDimensions.w;
     target.height = imageDimensions.h;
     horizontalOrientation = imageDimensions.fit;
+
+    // check sourceimage dimensions and if are smaller than the window sizes, set the target size is source size;
+    if ( window.innerWidth > sourceDimensions.w &&  window.innerHeight > sourceDimensions.h ) {
+      target.width = sourceDimensions.w;
+      target.height = sourceDimensions.h;
+      noScroll = true;
+    }
 
     targetDimensions = { w: target.width, h: target.height };
     containerDimensions = { w: window.innerWidth, h: window.innerHeight };
@@ -353,7 +363,15 @@ var Intense = (function() {
     if (horizontalOrientation === true) {
       // HORIZONTAL SCANNING
       currentPosition += mouse.xCurr - currentPosition;
-      if (mouse.xCurr !== lastPosition) {
+
+    if (noScroll) { // if noScroll is TRUE, Centering the image.
+      position =  containerDimensions.w/2 - targetDimensions.w/2;
+      var targetY = containerDimensions.h/2 - targetDimensions.h/2;
+      target.style["webkitTransform"] = "translate(" + position + "px, " + targetY +"px)";
+      target.style["MozTransform"] = "translate(" + position + "px, " + targetY +"px)";
+      target.style["msTransform"] = "translate(" + position + "px, " + targetY +"px)";
+      lastPosition = mouse.xCurr;
+    } else if (mouse.xCurr !== lastPosition) {
         var position = parseFloat(
           calcPosition(currentPosition, containerDimensions.w)
         );
